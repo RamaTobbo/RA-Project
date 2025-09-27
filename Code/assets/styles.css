@@ -1,0 +1,107 @@
+/* Button styles */
+body{
+    background-color: #F5F5F5;
+    position: relative;
+}
+.button-row {
+
+    margin-bottom: 10px;
+}
+
+.bigger-button {
+    width: 70px;
+    height: 50px;
+    background-color: #222; 
+    color: #F5F5F5; 
+}
+.biggest-button {
+    width: 140px;
+    height: 50px;
+    background-color: #222; 
+    color:#F5F5F5; 
+}
+.dec-button{
+    font-weight: bolder;
+    background-color: #222; 
+    color: #F5F5F5; 
+}
+/* Additional styles for specific buttons */
+#btn-equals {
+    background-color: orangered; 
+    color: #000; 
+    font-weight: bold;
+}
+
+/* Display styles */
+.display {
+    font-size: 20px;
+    margin-bottom: 10px;
+    font-style: italic;
+    
+}
+.calculator{
+    
+    top: 0;
+    right: 0;
+}
+.num-button {
+    background-color: #222; 
+    color: #F5F5F5; 
+
+}
+.custom-slider {
+    width: 55%;
+}
+.custom-slider .rc-slider-rail {
+    background-color: #222; /* Set the desired background color */
+}
+
+.custom-slider .rc-slider-track {
+    background-color: orangered; /* Set the desired track color */
+}
+
+.custom-slider .rc-slider-handle {
+    background-color: orangered; /* Set the desired handle color */
+}
+.custom-slider .rc-slider-mark-text {
+    color: #222; /* Set the desired text color */
+}
+h1,h2{
+    text-align: center;
+}
+label {
+    font-size: 24px; /* Adjust the font size as needed */
+    color: #222; /* Set the text color to your preferred color */
+    font-weight: bold; /* Make the text bold if desired */
+    margin-bottom: 10px; /* Increase or decrease the space below the label */
+    margin-top: 10px; 
+    /* Add other styling properties like text-align, margin, padding, etc. */
+}
+.slider-output{
+    font-size: 18px; /* Adjust the font size as needed */
+    color: #222; /* Set the text color to your preferred color */
+    margin-bottom: 20px; /* Increase or decrease the space below the label */
+ 
+    font-style: italic;
+   
+}
+p{
+    font-size: 18px; /* Adjust the font size as needed */
+    color: #222; /* Set the text color to your preferred color */
+    margin-bottom: 20px; /* Increase or decrease the space below the label */
+ 
+    font-style: italic;   
+}
+.result{
+    font-size: 22px;
+    font-weight: bold;
+    color:rgb(255, 38, 0);
+}
+.result .custom-paragraph {
+    font-weight: 600; /* Or any desired font-weight value */
+}
+.part2{
+    position: absolute;
+    top:20%;
+    left:65%;
+}

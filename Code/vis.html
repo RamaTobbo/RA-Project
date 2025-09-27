@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Visualize Metaheuristics</title>
+	<style>
+		html, body {
+			height: 100%;
+			margin: 0;
+			padding: 0;
+		}
+		
+		/* Style for the two divisions */
+		.top {
+			height: 50%;
+			background-color: royalblue;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+		}
+		
+		.bottom {
+			height: 50%;
+			background-color: royalblue;
+			display: flex;
+			flex-direction: row;
+		}
+		
+		
+		/* Style for the header in the top division */
+		.top-header {
+			text-align: center;
+			font-size: 2em;
+			margin-top: 20px;
+		}
+
+	/* Style for the buttons in the bottom division */
+.bottom-left, .bottom-middle-left, .bottom-middle-right, .bottom-right {
+    flex: 1;
+    padding: 20px;
+    background-color: lightskyblue;
+    color: whitesmoke;
+    text-align: center;
+    font-size: 1.5em;
+    border: 3px solid whitesmoke;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+}
+.bottom a .design1 {
+	display: block;
+	width: 80%;
+	height: auto;
+	margin: 0 auto;
+}
+/* Style for the images in the buttons */
+.bottom a .design2 {
+  display: block;
+  margin: 0 auto;
+  max-width: 50%;
+  height: auto;
+}
+
+	</style>
+</head>
+<body>
+	<!-- Top division -->
+	<div class="top">
+		<div class="top-header">
+			<h1 style="color: white;">Pick any algorithm that you want to Visualize:</h1>
+		</div>
+	</div>
+	
+	<div class="bottom">
+  		<div class="bottom-left">
+    		<a href="wolf_act.html">
+      			<img src="wolf.png" alt="Button 1 Image" class="design1">
+      			
+    		</a>
+  		</div>
+  		<div class="bottom-middle-left">
+    		<a href="bee_act.html">
+      			<img src="bee.png" alt="Button 2 Image" class="design1">
+      			
+    		</a>
+  		</div>
+  		<div class="bottom-middle-right">
+    		<a href="bat_act.html">
+      			<img src="bat.png" alt="Button 3 Image" class="design1">
+      			
+    		</a>
+  		</div>
+  		<div class="bottom-right">
+    		<a href="fish_act.html">
+      			<img src="fish.png" alt="Button 4 Image" class="design2">
+    		</a>
+  		</div>
+	</div>
+</body>
+
+</html>

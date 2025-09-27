@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Best fitness</title>
+	<style>
+		html, body {
+			height: 100%;
+			margin: 0;
+		}
+		body {
+			display: flex;
+			flex-direction: column;
+		}
+		.container {
+			flex: 1;
+			display: flex;
+			flex-direction: row;
+			overflow: auto; /* Enable horizontal scrolling if necessary */
+		}
+		.box {
+			flex: 1;
+			display: flex;
+			flex-direction: row;
+			align-items: center; /* Center the plots vertically */
+			justify-content: space-between; /* Distribute the plots evenly */
+		}
+		.inner-box {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			border: 1px solid black;
+			padding: 10px; /* Added padding for spacing */
+			width: 25%; /* Set the width to 25% to display four plots on the same line */
+			box-sizing: border-box; /* Include padding in the width calculation */
+		}
+
+		.inner-box h2 {
+			margin-top: 0;
+			text-align: center;
+		}
+
+		img {
+			max-width: 100%; /* Make the plots responsive and fit within the inner box */
+			height: auto; /* Maintain aspect ratio of the plots */
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="box">
+			<div class="inner-box" id="box1">
+				<h2>Wolf</h2>
+				<img src="Code/GeneratedData/Wolf_Fun_Best.gif" alt="GIF 1">
+			</div>
+			<div class="inner-box" id="box2">
+				<h2>Bee</h2>
+				<img src="Code/GeneratedData/Bee_Fun_Best.gif" alt="GIF 2">
+			</div>
+			<div class="inner-box" id="box3">
+				<h2>Bat</h2>
+				<img src="Code/GeneratedData/Bat_Fun_Best.gif" alt="GIF 3">
+			</div>
+			<div class="inner-box" id="box4">
+				<h2>Fish</h2>
+				<img src="Code/GeneratedData/Fish_Fun_Best.gif" alt="GIF 4">
+			</div>
+		</div>
+	</div>
+</body>
+</html>

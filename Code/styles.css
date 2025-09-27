@@ -1,0 +1,17 @@
+h1 {
+    color: #3498db;
+}
+
+/* Slider styles */
+.custom-slider {
+    width: 80000%;
+}
+
+/* Button styles */
+.num-button {
+    background-color: #f0f0f0;
+    color: #333;
+}
+.custom-header{
+    color:aqua;
+}
