@@ -7,7 +7,7 @@ CORS(app)
 
 @app.route('/')
 def home():
-    return render_template('div.html')  # make sure div.html is in /templates
+    return render_template('div.html')  
 
 @app.route('/vis')
 def vis():
@@ -21,6 +21,9 @@ def summary_act():
 @app.route('/bat_act')
 def bat_act():
     return render_template('bat_act.html')
+@app.route('/fish_act')
+def fish_act():
+    return render_template('fish_act.html')
 @app.route('/wolf_act')
 def wolf_act():
     return render_template('wolf_act.html')
@@ -60,6 +63,15 @@ def bat():
 @app.route('/fish')
 def fish():
     return render_template('Fish/index.html')
+@app.route('/fun_fit')
+def fun_fit():
+    return render_template('fun_fit.html')
+@app.route('/mic_fit')
+def mic_fit():
+    return render_template('mic_fit.html')
+@app.route('/ackley_fit')
+def ackley_fit():
+    return render_template('ackley_fit.html')
 
 @app.route('/run', methods=['POST'])
 

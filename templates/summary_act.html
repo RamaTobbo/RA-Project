@@ -294,15 +294,26 @@
     <h1 class="logo">Website Name</h1>
     <nav>
       <ul>
-        <li><a href="div.html"><img src="assets/images/homeIcon.png" alt="Home icon"> Home</a></li>
-        <li><a href="learn.html" ><img src="assets/images/book.png" alt="Home icon" > Learn Metaheuristic</a></li>
-        <li><a href="vis.html"><img src="assets/images/visualize.png" alt="Home icon"> Visualize Metaheuristic</a></li>
-        <li><a href="summary_act.html" style="color: black;"><img src="assets/images/compare.png" alt="Home icon"> Compare Metaheuristic</a></li>
+                <li><a href="{{ url_for('home') }}">
+  <img src="{{ url_for('static', filename='assets/images/homeIcon.png') }}" alt="Home icon"> Home
+</a></li>
+
+<li><a href="{{ url_for('learn') }}" >
+  <img src="{{ url_for('static', filename='assets/images/book.png') }}" alt="Learn icon"> Learn Metaheuristic
+</a></li>
+
+<li><a href="{{ url_for('vis') }}">
+  <img src="{{ url_for('static', filename='assets/images/visualize.png') }}" alt="Visualize icon"> Visualize Metaheuristic
+</a></li>
+
+<li><a href="{{ url_for('summary_act') }}" style="color: black;">
+  <img src="{{ url_for('static', filename='assets/images/compare.png') }}" alt="Compare icon"> Compare Metaheuristic
+</a></li>
       </ul>
     </nav>
 	<div class="explore-container">
-		 <img src="assets/images/explore.png" alt="books illustration">
-    	<a href="learn.html" class="explore-btn">Explore Algorithms</a>
+		<img src="{{ url_for('static', filename='assets/images/explore.png') }}" alt="books illustration">
+    	<a href="{{ url_for('learn') }}" class="explore-btn">Explore Algorithms</a>
 	</div>
   </aside>
 
@@ -316,29 +327,21 @@
     <section class="features">
       <h1>Pick an activation function </h1>
       <div class="feature-cards">
-        
-        <a href="ackley_fit.html" class="card1">
-  	  
-	      Ackley activation function
-	 
-      
-		</a>
-        
-        <a href="mic_fit.html" class="card2">
-        
-	      Michalewicz activation function
+		      <a href="{{ url_for('ackley_fit') }}" class="card1">
+     Ackley activation function
+</a>
+
+<a href="{{ url_for('mic_fit') }}" class="card2">
+   Michalewicz activation function
+</a>
+
+<a href="{{ url_for('fun_fit') }}" class="card3">
+  	      Choose activation function
+</a>
 
 
-		</a>
         
-        <a href="fun_fit.html" class="card3">
-           
-         	 
-	      Choose activation function
-
-		</a>
-		
-        
+       
       </div>
     </section>
 

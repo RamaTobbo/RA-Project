@@ -243,15 +243,25 @@
     <h1 class="logo">Website Name</h1>
     <nav>
       <ul>
-        <li><a href="div.html"><img src="assets/images/homeIcon.png" alt="Home icon"> Home</a></li>
-        <li><a href="learn.html" ><img src="assets/images/book.png" alt="Home icon" > Learn Metaheuristic</a></li>
-        <li><a href="vis.html" style="color: black;"><img src="assets/images/visualize.png" alt="Home icon"> Visualize Metaheuristic</a></li>
-        <li><a href="summary_act.html"><img src="assets/images/compare.png" alt="Home icon"> Compare Metaheuristic</a></li>
-      </ul>
+        <li><a href="{{ url_for('home') }}">
+  <img src="{{ url_for('static', filename='assets/images/homeIcon.png') }}" alt="Home icon"> Home
+</a></li>
+
+<li><a href="{{ url_for('learn') }}" >
+  <img src="{{ url_for('static', filename='assets/images/book.png') }}" alt="Learn icon"> Learn Metaheuristic
+</a></li>
+
+<li><a href="{{ url_for('vis') }}" style="color: black;">
+  <img src="{{ url_for('static', filename='assets/images/visualize.png') }}" alt="Visualize icon"> Visualize Metaheuristic
+</a></li>
+
+<li><a href="{{ url_for('summary_act') }}">
+  <img src="{{ url_for('static', filename='assets/images/compare.png') }}" alt="Compare icon"> Compare Metaheuristic
+</a></li>
     </nav>
 	<div class="explore-container">
-		 <img src="assets/images/explore.png" alt="books illustration">
-    	<a href="learn.html" class="explore-btn">Explore Algorithms</a>
+		<img src="{{ url_for('static', filename='assets/images/explore.png') }}" alt="books illustration">
+    	<a href="{{ url_for('learn') }}" class="explore-btn">Explore Algorithms</a>
 	</div>
   </aside>
 
@@ -266,24 +276,21 @@
       <h1>Pick any algorithm</h1>
       <div class="feature-cards">
         
-        <a href="wolf_act.html" class="card1">
-          <img src="wolf.png" alt="Learn">
-      
-		</a>
-        
-        <a href="bee_act.html" class="card2">
-          <img src="bee.png" alt="Visualize">
+              <a href="{{ url_for('wolf_act') }}" class="card1">
+  <img src="{{ url_for('static', filename='assets/images/wolf.png') }}" alt="Learn">
+</a>
 
-		</a>
-        
-        <a href="bat_act.html" class="card3">
-          <img src="assets/images/bat.png" alt="Compare">
-         
-		</a>
-		    <a href="fish_act.html" class="card4">
-          <img src="fish.png" alt="Compare">
-      
-		</a>
+<a href="{{ url_for('bee_act') }}" class="card2">
+  <img src="{{ url_for('static', filename='assets/images/bee.png') }}" alt="Visualize">
+</a>
+
+<a href="{{ url_for('bat_act') }}" class="card3">
+  <img src="{{ url_for('static', filename='assets/images/bat.png') }}" alt="Compare">
+</a>
+
+<a href="{{ url_for('fish_act') }}" class="card4">
+  <img src="{{ url_for('static', filename='assets/images/fish.png') }}" alt="Compare">
+</a>
         
       </div>
     </section>
