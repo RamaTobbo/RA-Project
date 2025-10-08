@@ -1,0 +1,51 @@
+<html>
+<head>
+<title>slides test</title>
+<!-- <link rel="stylesheet" href="style.css"> -->
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
+</head>
+<body>
+<div class="container">
+<!-- Slider main container -->
+<div class="swiper">
+  <!-- Additional required wrapper -->
+  <div class="swiper-wrapper">
+    <!-- Slides -->
+    <div class="swiper-slide"><img src="{{ url_for('static', filename='assets/steps/Wolf/Step 1.gif') }}" alt="Step 1"></div>
+    <div class="swiper-slide"><img src="{{ url_for('static', filename='assets/steps/Wolf/Step 2.gif') }}" alt="Step 2"></div>
+    <div class="swiper-slide"><img src="{{ url_for('static', filename='assets/steps/Wolf/Step 3.gif') }}" alt="Step 3"></div>
+    <div class="swiper-slide"><img src="{{ url_for('static', filename='assets/steps/Wolf/Step 4.gif') }}" alt="Step 4"></div>
+    <div class="swiper-slide"><img src="{{ url_for('static', filename='assets/steps/Wolf/Step 5.gif') }}" alt="Step 5"></div>
+    <div class="swiper-slide"><img src="{{ url_for('static', filename='assets/steps/Wolf/Step 6.gif') }}" alt="Step 6"></div>
+    <div class="swiper-slide"><img src="{{ url_for('static', filename='assets/steps/Wolf/Step 7.gif') }}" alt="Step 7"></div>
+
+  </div>
+  <!-- If we need pagination -->
+  <div class="swiper-pagination"></div>
+
+  <!-- If we need navigation buttons -->
+  <div class="swiper-button-prev"></div>
+  <div class="swiper-button-next"></div>
+
+
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+<script>
+const swiper = new Swiper('.swiper', {
+  loop: true,
+  pagination: {
+    el: '.swiper-pagination',
+clickable:true,
+  },
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
+});
+</script>
+</body>
+</html>

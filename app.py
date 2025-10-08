@@ -23,7 +23,7 @@ def bat_act():
     return render_template('bat_act.html')
 @app.route('/wolf_act')
 def wolf_act():
-    return render_template('wolf_act')
+    return render_template('wolf_act.html')
 @app.route('/bee_act')
 def bee_act():
     return render_template('bee_act.html')
@@ -45,6 +45,21 @@ def bee_ackley():
 @app.route('/bee_michalewicz')
 def bee_michalewicz():
     return render_template('bee_michalewicz.html')
+@app.route('/wolf')
+def wolf():
+    return render_template('Wolf/index.html')
+
+@app.route('/bee')
+def bee():
+    return render_template('Bee/index.html')
+
+@app.route('/bat')
+def bat():
+    return render_template('Bat/index.html')
+
+@app.route('/fish')
+def fish():
+    return render_template('Fish/index.html')
 
 @app.route('/run', methods=['POST'])
 
