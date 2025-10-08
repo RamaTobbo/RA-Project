@@ -11,12 +11,14 @@ let iter=0;
 let blackwolf;
 let whitewolf;
 
+
 function preload(){
-  table = loadTable('wolf_Michalewicz.csv', 'csv','header');
-  img=loadImage('Wolf1.png')
-  blackwolf = loadImage('BlackWolf.png');
-  whitewolf=loadImage('WhiteWolf.png');
+  table = loadTable('/static/wolf_Michalewicz.csv', 'csv', 'header');
+  img = loadImage('/static/assets/images/Wolf1.png');
+  blackwolf = loadImage('/static/assets/images/BlackWolf.png');
+  whitewolf = loadImage('/static/assets/images/WhiteWolf.png');
 }
+
 
 function setup() {
   createCanvas(600, 600);

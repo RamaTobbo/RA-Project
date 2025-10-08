@@ -27,6 +27,9 @@ def fish_act():
 @app.route('/wolf_act')
 def wolf_act():
     return render_template('wolf_act.html')
+@app.route('/wolf_ack')
+def wolf_ack():
+    return render_template('Wolf/Wolf Ackley/wolf_ack.html')
 @app.route('/bee_act')
 def bee_act():
     return render_template('bee_act.html')
@@ -36,12 +39,16 @@ def avg_sum_ackley():
 @app.route('/best_sum_ackley')
 def best_sum_ackley():
     return render_template('best_sum_ackley.html')
+
+@app.route('/wolf_mic')
+def wolf_mic():
+    return render_template('Wolf/Wolf Michalwicz/wolf_mic.html')
 @app.route('/wolf_ackley')
 def wolf_ackley():
-    return render_template('wolf_ackley.html')
+    return render_template('Wolf/Wolf Ackley/wolf_ackley.html')
 @app.route('/wolf_michalewicz')
 def wolf_michalewicz():
-    return render_template('wolf_michalewicz.html')
+    return render_template('Wolf/Wolf Michalwicz/wolf_michalewicz.html')
 @app.route('/bee_ackley')
 def bee_ackley():
     return render_template('bee_ackley.html')

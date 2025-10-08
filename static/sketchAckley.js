@@ -9,13 +9,16 @@ let currentPositions=[];
 let targetPositions =[];
 let iter=0;
 let blackwolf;
-let whitewolf;
+let whitewolf;kkl
 
 function preload(){
-  table = loadTable('wolf_ackley.csv', 'csv','header');
-  img=loadImage('wolf.jpeg')
-  blackwolf = loadImage('BlackWolf.png');
-  whitewolf=loadImage('WhiteWolf.png');
+
+ 
+    table = loadTable('/static/wolf_ackley.csv', 'csv', 'header');
+  img = loadImage('/static/assets/images/wolf.jpeg');
+  blackwolf = loadImage('/static/assets/images/BlackWolf.png');
+  whitewolf = loadImage('/static/assets/images/WhiteWolf.png');
+
 }
 
 function setup() {
