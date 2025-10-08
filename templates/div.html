@@ -292,8 +292,9 @@
       </ul>
     </nav>
 	<div class="explore-container">
-		 <img src="assets/images/explore.png" alt="books illustration">
-    	<a href="learn.html" class="explore-btn">Explore Algorithms</a>
+	<img src="{{ url_for('static', filename='assets/images/explore.png') }}" alt="books illustration">
+
+    	<a href="{{ url_for('learn') }}" class="explore-btn">Explore Algorithms</a>
 	</div>
   </aside>
 
@@ -309,7 +310,8 @@
 <p id="output" style="margin-top:10px; font-weight:bold;"></p>
       </div>
       <div class="hero-img">
-        <img src="assets/images/book.png" alt="books illustration">
+     <img src="{{ url_for('static', filename='assets/images/book.png') }}" alt="books illustration">
+
       </div>
     </section>
 
@@ -318,18 +320,21 @@
       <h1>Features</h1>
       <div class="feature-cards">
         
-        <a href="learn.html" class="card1">
-          <img src="assets/images/books.png" alt="Learn">
+        <a href="{{ url_for('learn') }}" class="card1">
+       <img src="{{ url_for('static', filename='assets/images/books.png') }}" alt="Learn">
+
           <h5>Learn Metaheuristic</h5>
 		</a>
         
         <a href="vis.html" class="card2">
-          <img src="assets/images/visualize.png" alt="Visualize">
+      <img src="{{ url_for('static', filename='assets/images/visualize.png') }}" alt="Visualize">
+
           <h5>Visualize Metaheuristic</h5>
 		</a>
         
         <a href="summary_act.html" class="card3">
-          <img src="assets/images/compare1.png" alt="Compare">
+         <img src="{{ url_for('static', filename='assets/images/compare1.png') }}" alt="Compare">
+
           <h5>Compare Metaheuristic</h5>
 		</a>
         
