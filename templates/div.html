@@ -22,7 +22,7 @@
 
 		
 		.sidebar {
-		  background: #fff;
+		  background: #D0CCD0;
 		  padding: 20px;
 		  display: flex;
 		  flex-direction: column;
@@ -115,7 +115,7 @@
   grid-template-columns: 1fr 3fr; 
   align-items: center;
 
-  background: #eec7b9;
+  background: #D0CCD0;
   padding: 20px;
   border-radius: 10px;
   max-width: 990px;
@@ -207,7 +207,7 @@
          box-shadow: 0 2px 5px rgba(0,0,0,0.1);
           transition: transform 0.2s;
            flex: none; 
-           background-color: #C5D7FF; 
+           background-color: #D0CCD0; 
           }
 .card2{ width: 290px; 
   height: 250px;
@@ -217,7 +217,7 @@
      box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
      transition: transform 0.2s; 
      flex: none;
-      background-color: #EEC7B9; 
+      background-color: #D0CCD0; 
     }
     .card2 h5{
       margin-top:35px;
@@ -241,7 +241,7 @@
         box-shadow: 0 2px 5px rgba(0,0,0,0.1);
          transition: transform 0.2s;
           flex: none;
-           background-color: #CBABFD;
+           background-color: #D0CCD0;
            }
 
 		.feature-cards img {
@@ -274,28 +274,24 @@
     <nav>
       <ul>
       <li><a href="{{ url_for('home') }}" style="color: black;">
-  <img src="{{ url_for('static', filename='assets/images/homeIcon.png') }}" alt="Home icon"> Home
+ Home
 </a></li>
 
-<li><a href="{{ url_for('learn') }}">
-  <img src="{{ url_for('static', filename='assets/images/book.png') }}" alt="Learn icon"> Learn Metaheuristic
+<li><a href="{{ url_for('learn') }}" style="color: black;">
+  Learn Metaheuristic
 </a></li>
 
-<li><a href="{{ url_for('vis') }}">
-  <img src="{{ url_for('static', filename='assets/images/visualize.png') }}" alt="Visualize icon"> Visualize Metaheuristic
+<li><a href="{{ url_for('vis') }}" style="color: black;">
+ Visualize Metaheuristic
 </a></li>
 
-<li><a href="{{ url_for('summary_act') }}">
-  <img src="{{ url_for('static', filename='assets/images/compare.png') }}" alt="Compare icon"> Compare Metaheuristic
+<li><a href="{{ url_for('summary_act') }}" style="color: black;">
+  Compare Metaheuristic
 </a></li>
 
       </ul>
     </nav>
-	<div class="explore-container">
-	<img src="{{ url_for('static', filename='assets/images/explore.png') }}" alt="books illustration">
 
-    	<a href="{{ url_for('learn') }}" class="explore-btn">Explore Algorithms</a>
-	</div>
   </aside>
 
   
@@ -306,7 +302,6 @@
       <div class="hero-text">
         <h2>Welcome to the world of Metaheuristics</h2>
         <p>Our tool explains, visualizes, and compares the performance of metaheuristic optimization algorithms when applied to fitness functions.</p>
-      <button class="learn-btn" onclick="runAlgorithm()">Run </button>
 <p id="output" style="margin-top:10px; font-weight:bold;"></p>
       </div>
       <div class="hero-img">
@@ -343,12 +338,7 @@
 
   </main>
 <script>
-async function runAlgorithm() {
-  document.getElementById("output").innerText = "Running algorithm...";
-  const response = await fetch("/run", { method: "POST" });
-  const data = await response.json();
-  document.getElementById("output").innerText = data.result;
-}
+
 </script>
 </body>
 </html>

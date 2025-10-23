@@ -25,7 +25,7 @@
 
 		
 		.sidebar {
-		  background: #fff;
+		  background: #D0CCD0;
 		  padding: 20px;
 		  display: flex;
 		  flex-direction: column;
@@ -157,7 +157,7 @@
          box-shadow: 0 2px 5px rgba(0,0,0,0.1);
           transition: transform 0.2s;
            flex: none; 
-           background-color: #C5D7FF; 
+           background-color: #D0CCD0; 
           }
 .card2{ width: 290px; 
   height: 250px;
@@ -167,7 +167,7 @@
      box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
      transition: transform 0.2s; 
      flex: none;
-      background-color: #EEC7B9; 
+      background-color: #D0CCD0; 
     }
     .card2 h5{
       margin-top:35px;
@@ -201,7 +201,7 @@
         box-shadow: 0 2px 5px rgba(0,0,0,0.1);
          transition: transform 0.2s;
           flex: none;
-           background-color: #CBABFD;
+           background-color: #D0CCD0;
            }
 		     .card4{ width: 290px; 
       height: 250px;
@@ -211,7 +211,7 @@
         box-shadow: 0 2px 5px rgba(0,0,0,0.1);
          transition: transform 0.2s;
           flex: none;
-           background-color: #CBABFD;
+           background-color: #D0CCD0;
            }
 
 		.feature-cards img {
@@ -243,27 +243,24 @@
     <h1 class="logo">Website Name</h1>
     <nav>
       <ul>
-            <li><a href="{{ url_for('home') }}">
-  <img src="{{ url_for('static', filename='assets/images/homeIcon.png') }}" alt="Home icon"> Home
+            <li><a href="{{ url_for('home') }}" style="color: black;">
+ Home
 </a></li>
 
 <li><a href="{{ url_for('learn') }}" style="color: black;">
-  <img src="{{ url_for('static', filename='assets/images/book.png') }}" alt="Learn icon"> Learn Metaheuristic
+ Learn Metaheuristic
 </a></li>
 
-<li><a href="{{ url_for('vis') }}">
-  <img src="{{ url_for('static', filename='assets/images/visualize.png') }}" alt="Visualize icon"> Visualize Metaheuristic
+<li><a href="{{ url_for('vis') }}" style="color: black;">
+ Visualize Metaheuristic
 </a></li>
 
-<li><a href="{{ url_for('summary_act') }}">
-  <img src="{{ url_for('static', filename='assets/images/compare.png') }}" alt="Compare icon"> Compare Metaheuristic
+<li><a href="{{ url_for('summary_act') }}" style="color: black;">
+ Compare Metaheuristic
 </a></li>
       </ul>
     </nav>
-	<div class="explore-container">
-		<img src="{{ url_for('static', filename='assets/images/explore.png') }}" alt="books illustration">
-    	<a href="{{ url_for('learn') }}" class="explore-btn">Explore Algorithms</a>
-	</div>
+
   </aside>
 
   
@@ -278,19 +275,19 @@
       <div class="feature-cards">
         
        <a href="{{ url_for('wolf') }}" class="card1">
-  <img src="{{ url_for('static', filename='assets/images/wolf.png') }}" alt="Learn">
+  <img src="{{ url_for('static', filename='assets/images/wolf.png') }}" >
 </a>
 
 <a href="{{ url_for('bee') }}" class="card2">
-  <img src="{{ url_for('static', filename='assets/images/bee.png') }}" alt="Visualize">
+  <img src="{{ url_for('static', filename='assets/images/bee.png') }}" >
 </a>
 
 <a href="{{ url_for('bat') }}" class="card3">
-  <img src="{{ url_for('static', filename='assets/images/bat.png') }}" alt="Compare">
+  <img src="{{ url_for('static', filename='assets/images/bat.png') }}" >
 </a>
 
 <a href="{{ url_for('fish') }}" class="card4">
-  <img src="{{ url_for('static', filename='assets/images/fish.png') }}" alt="Compare">
+  <img src="{{ url_for('static', filename='assets/images/fish.png') }}" >
 </a>
 
       </div>
