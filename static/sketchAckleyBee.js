@@ -13,9 +13,12 @@ let waggledance=true
 let timer=0.5
 let phase="Onlooker"
 function preload(){
-  table = loadTable('bee_ackley.csv', 'csv','header');
-  img=loadImage('bee.png')
-bumblebee = loadImage('bumblebee.png');
+ 
+ table = loadTable('/static/bee_ackley.csv', 'csv', 'header');
+  img = loadImage('/static/assets/images/bee1.png');
+  bumblebee = loadImage('/static/assets/images/bumblebee.png');
+
+
 }
 
 function setup() {

@@ -30,6 +30,12 @@ def wolf_act():
 @app.route('/wolf_ack')
 def wolf_ack():
     return render_template('Wolf/Wolf Ackley/wolf_ack.html')
+@app.route('/bat_ack')
+def bat_ack():
+    return render_template('Bat/Bat Ackley/bat_ack.html')
+@app.route('/bee_ack')
+def bee_ack():
+    return render_template('Bee/Bee Ackley/bee_ack.html')
 @app.route('/bee_act')
 def bee_act():
     return render_template('bee_act.html')
@@ -43,18 +49,30 @@ def best_sum_ackley():
 @app.route('/wolf_mic')
 def wolf_mic():
     return render_template('Wolf/Wolf Michalwicz/wolf_mic.html')
+@app.route('/bat_mic')
+def bat_mic():
+    return render_template('Bat/Bat Michalewicz/bat_mic.html')
 @app.route('/wolf_ackley')
 def wolf_ackley():
     return render_template('Wolf/Wolf Ackley/wolf_ackley.html')
+@app.route('/bat_ackley')
+def bat_ackley():
+    return render_template('Bat/Bat Ackley/bat_ackley.html')
+@app.route('/bee_ackley')
+def bee_ackley():
+    return render_template('Bee/Bee Ackley/bee_ackley.html')
 @app.route('/wolf_michalewicz')
 def wolf_michalewicz():
     return render_template('Wolf/Wolf Michalwicz/wolf_michalewicz.html')
-@app.route('/bee_ackley')
-def bee_ackley():
-    return render_template('bee_ackley.html')
+@app.route('/bat_michalewicz')
+def bat_michalewicz():
+    return render_template('Bat/Bat Michalewicz/bat_michalewicz.html')
 @app.route('/bee_michalewicz')
 def bee_michalewicz():
-    return render_template('bee_michalewicz.html')
+    return render_template('Bee/Bee Michalewicz/bee_michalewicz.html')
+@app.route('/bee_mic')
+def bee_mic():
+    return render_template('Bee/Bee Michalewicz/bee_mic.html')
 @app.route('/wolf')
 def wolf():
     return render_template('Wolf/index.html')

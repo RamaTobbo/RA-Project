@@ -65,17 +65,17 @@
 
 	
 		.card1 {
-		  background-color: #C5D7FF; 
+		  background-color: #D0CCD0; 
 		}
 		.card1:hover {
-		  background-color: #a8c3ff;
+		  background-color: #D0CCD0;
 		}
 
 		.card2 {
-		  background-color: #EEC7B9; 
+		  background-color: #D0CCD0; 
 		}
 		.card2:hover {
-		  background-color: #d9a28b;
+		  background-color: #D0CCD0;
 		}
 
 		@media (max-width: 768px) {
@@ -93,8 +93,8 @@
       <h1>Pick an activation function</h1>
       
       <div class="feature-cards">
-        <a href="Bat/Bat Ackley/bat_ackley.html" class="card1">Ackley activation function</a>
-        <a href="Bat/Bat Michalewicz/bat_michalewicz.html" class="card2">Michalewicz activation function</a>
+        <a  href="{{ url_for('bat_ackley') }}" class="card1">Ackley activation function</a>
+        <a href="{{ url_for('bat_michalewicz') }}" class="card2">Michalewicz activation function</a>
       </div>
     </section>
   </main>

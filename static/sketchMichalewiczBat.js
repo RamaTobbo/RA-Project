@@ -11,9 +11,11 @@ let iter=0;
 let bat;
 
 function preload(){
-  table = loadTable('bat_Mich.csv', 'csv','header');
-  img=loadImage('Bat1.png')
-  bat = loadImage('bat-logo-and-symbols-template-vector-21489239-removebg-preview.png');
+ 
+   
+    table = loadTable('/static/bat_Mich.csv', 'csv', 'header');
+  img = loadImage('/static/assets/images/Bat1.png');
+  bat = loadImage('/static/assets/images/bat-logo-and-symbols-template-vector-21489239-removebg-preview.png');
 }
 
 function setup() {
