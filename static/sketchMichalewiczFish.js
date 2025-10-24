@@ -14,10 +14,14 @@ let swich=true
 let counter=0
 
 function preload(){
-  table = loadTable('fish_mic.csv', 'csv','header');
-  img=loadImage('Wolf1.png')
-  firstfish = loadImage('firstfish.png');
-  secondfish=loadImage('secondfish.png');
+  // table = loadTable('fish_mic.csv', 'csv','header');
+  // img=loadImage('Wolf1.png')
+  // firstfish = loadImage('firstfish.png');
+  // secondfish=loadImage('secondfish.png');
+    table = loadTable('/static/fish_mic.csv', 'csv', 'header');
+       img = loadImage('/static/assets/images/Wolf1.png');
+   firstfish = loadImage('/static/assets/images/firstfish.png');
+ secondfish = loadImage('/static/assets/images/secondfish.png');
 }
 
 function setup() {
