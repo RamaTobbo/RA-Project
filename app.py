@@ -124,7 +124,11 @@ def ackley_fit():
 @app.route('/run', methods=['POST'])
 
 def run_algorithm():
-    result = Michalewicz_Code.run_algorithm()  # call the function
+   
+    try:
+        result = Michalewicz_Code.run_algorithm()
+    except Exception as e:
+        result = str(e)
     return jsonify({"result": result})
 
 if __name__ == '__main__':
