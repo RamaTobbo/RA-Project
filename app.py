@@ -1,6 +1,6 @@
 from flask import Flask, render_template, jsonify
 from flask_cors import CORS
-
+from Code import Michalewicz_Code # import your new module
 
 app = Flask(__name__)
 CORS(app)
@@ -123,7 +123,9 @@ def ackley_fit():
 
 @app.route('/run', methods=['POST'])
 
-
+def run_algorithm():
+    result = Michalewicz_Code.run_algorithm()  # call the function
+    return jsonify({"result": result})
 
 if __name__ == '__main__':
     app.run(debug=True)
