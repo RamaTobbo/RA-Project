@@ -65,17 +65,17 @@
 
 	
 		.card1 {
-		  background-color: #C5D7FF; 
+		  background-color: #D0CCD0; 
 		}
 		.card1:hover {
-		  background-color: #a8c3ff;
+		  background-color: #D0CCD0;
 		}
 
 		.card2 {
-		  background-color: #EEC7B9; 
+		  background-color: #D0CCD0; 
 		}
 		.card2:hover {
-		  background-color: #d9a28b;
+		  background-color: #D0CCD0;
 		}
 
 		@media (max-width: 768px) {
@@ -93,8 +93,8 @@
       <h1>Do you want to compare the algorithms based on the average or best fitness at each iteration?</h1>
       
       <div class="feature-cards">
-        <a href="avg_sum_mic.html" class="card1">Average fitness</a>
-        <a href="best_sum_mic.html" class="card2">Best fitness</a>
+        <a href="{{ url_for('avg_sum_mic') }}"  class="card1">Average fitness</a>
+        <a  href="{{ url_for('best_sum_mic') }}"  class="card2">Best fitness</a>
       </div>
     </section>
   </main>

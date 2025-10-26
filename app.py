@@ -42,9 +42,7 @@ def bee_ack():
 @app.route('/bee_act')
 def bee_act():
     return render_template('bee_act.html')
-@app.route('/avg_sum_ackley')
-def avg_sum_ackley():
-    return render_template('avg_sum_ackley.html')
+
 @app.route('/best_sum_ackley')
 def best_sum_ackley():
     return render_template('best_sum_ackley.html')
@@ -67,6 +65,16 @@ def wolf_ackley():
 def fish_ackley():
     return render_template('Fish/Fish Ackley/fish_ackley.html')
 
+@app.route('/avg_sum_mic')
+def avg_sum_mic():
+    return render_template('avg_sum_mic.html')
+@app.route('/best_sum_mic')
+def best_sum_mic():
+    return render_template('best_sum_mic.html')
+
+@app.route('/avg_sum_ackley')
+def avg_sum_ackley():
+    return render_template('avg_sum_ackley.html')
 @app.route('/bat_ackley')
 def bat_ackley():
     return render_template('Bat/Bat Ackley/bat_ackley.html')
