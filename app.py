@@ -121,15 +121,15 @@ def mic_fit():
 def ackley_fit():
     return render_template('ackley_fit.html')
 
-@app.route('/run', methods=['POST'])
+# @app.route('/run', methods=['POST'])
 
-def run_algorithm():
+# def run_algorithm():
    
-    try:
-        result = Michalewicz_Code.run_algorithm()
-    except Exception as e:
-        result = str(e)
-    return jsonify({"result": result})
+#     try:
+#         result = Michalewicz_Code.run_algorithm()
+#     except Exception as e:
+#         result = str(e)
+#     return jsonify({"result": result})
 
 if __name__ == '__main__':
     app.run(debug=True)
