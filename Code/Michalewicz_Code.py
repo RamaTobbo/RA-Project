@@ -335,7 +335,7 @@ pd.DataFrame(fit).to_csv("fitness_bee_Mich.csv",header=False,index=False)
 
 import random
 
-from BatAlgorithm import *
+from .BatAlgorithm import *
 
 
 # In[13]:

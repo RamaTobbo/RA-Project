@@ -332,7 +332,7 @@ get_ipython().system('pip install BatAlgorithm')
 
 import random
 
-from BatAlgorithm import *
+from Code.BatAlgorithm import *
 
 
 # In[13]:
