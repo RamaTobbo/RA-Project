@@ -24,10 +24,12 @@
 		}
 
 		
+	
+		
 		.sidebar {
 		  background: #D0CCD0;
 		  padding: 20px;
-		  display: flex;
+  height:550px;
 		  flex-direction: column;
 		  justify-content: space-between;
 		  border: 1px solid #eee;
@@ -53,7 +55,7 @@
 		}
 
 		.sidebar nav ul li {
-		  margin: 25px 0;
+		  margin: 55px 0;
 		}
 
 		.sidebar nav ul li a {
@@ -65,6 +67,7 @@
 
 		.sidebar nav ul li a:hover {
 		  color: black;
+		  font-weight: bold;
 		}
 
 		.explore-container{
@@ -128,12 +131,13 @@
   flex-wrap: wrap;        
   justify-content: center; 
   gap: 40px;  
-      
+        margin-top: 100px;
 		}
 
 		.feature-cards a {
 		  display: block;
 		  padding: 20px;
+		   width:200px;
 		  text-align: center;
 		  border-radius: 10px;
 		  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -170,10 +174,14 @@
       background-color: #D0CCD0; 
     }
     .card2 h5{
-      margin-top:35px;
+      margin-top:55px;
     }
        .card1 h5{
-      margin-top:35px;
+      margin-top:55px;
+    }
+	  .card3 h5{
+     position: relative;
+	 bottom:120px;
     }
     .card1 img{
     height: 150px;
@@ -251,7 +259,7 @@
  Learn Metaheuristic
 </a></li>
 
-<li><a href="{{ url_for('vis') }}" style="color: black;">
+<li><a href="{{ url_for('vis') }}" style="color: black;font-weight: bold;">
  Visualize Metaheuristic
 </a></li>
 
@@ -275,18 +283,22 @@
         
               <a href="{{ url_for('wolf_act') }}" class="card1">
   <img src="{{ url_for('static', filename='assets/images/wolf.png') }}" alt="Learn">
+   <h5> Visualize Wolf Algorithm</h5>
 </a>
 
 <a href="{{ url_for('bee_act') }}" class="card2">
   <img src="{{ url_for('static', filename='assets/images/bee.png') }}" alt="Visualize">
+   <h5> Visualize Bee Algorithm</h5>
 </a>
 
 <a href="{{ url_for('bat_act') }}" class="card3">
   <img src="{{ url_for('static', filename='assets/images/bat.png') }}" alt="Compare">
+   <h5>Visualize Bat Algorithm</h5>
 </a>
 
 <a href="{{ url_for('fish_act') }}" class="card4">
   <img src="{{ url_for('static', filename='assets/images/fish.png') }}" alt="Compare">
+   <h5> Visualize Fish Algorithm</h5>
 </a>
         
       </div>
