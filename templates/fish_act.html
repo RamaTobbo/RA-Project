@@ -1,103 +1,263 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Metaheuristics</title>
-	<style>
-		* {
-		  margin: 0;
-		  padding: 0;
-		  box-sizing: border-box;
-		  font-family: Arial, sans-serif;
-		}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Metaheuristics — Choose Function (Fish)</title>
 
-		body {
-		  display: flex;
-		  justify-content: center;
-		  align-items: center;
-		  min-height: 100vh;
-		  background-color: #F7F0F5;
-		  color: #333;
-		}
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-		.main-content {
-		  display: flex;
-		  flex-direction: column;
-		  align-items: center;
-		  justify-content: center;
-		  gap: 40px;
-		}
+  <style>
+    :root{
+      --bg:#F9FAFB;
+      --surface:#FFFFFF;
+      --surface-2:#F3F4F6;
+      --text:#111827;
+      --muted:#6B7280;
+      --border:#E5E7EB;
 
-		.features h1 {
-		  text-align: center;
-		  font-size: 1.8rem;
-		  color: #333;
-		  margin-bottom: 30px;
-		}
+      --primary:#4F46E5;
+      --primary-2:#4338CA;
 
-		.feature-cards {
-		  display: flex;         
-		  gap: 40px;  
-		  justify-content: center; 
-		}
+      --radius:16px;
+      --shadow:0 10px 25px rgba(17,24,39,.06);
+      --shadow-sm:0 4px 14px rgba(17,24,39,.06);
 
-		/* Card base */
-		.feature-cards a {
-		  width: 290px; 
-		  height: 250px;
-		  display: flex;
-		  justify-content: center;
-		  align-items: center;
-		  padding: 20px;
-		  text-align: center;
-		  border-radius: 10px;
-		  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-		  transition: transform 0.2s, background 0.3s;
-		  text-decoration: none;
-		  color: #333;
-		  font-size: 1.4em;
-		  font-weight: bold;
-		}
+      --h1:30px;
+      --body:15px;
+    }
 
-		.feature-cards a:hover {
-		  transform: translateY(-5px);
-		}
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{
+      font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      min-height:100vh;
+    }
 
-	
-		.card1 {
-		  background-color: #D0CCD0; 
-		}
-		.card1:hover {
-		  background-color: #D0CCD0;
-		}
+    .page{
+      max-width:1100px;
+      margin:0 auto;
+      padding:24px;
+      display:grid;
+      gap:18px;
+      align-content:start;
+    }
 
-		.card2 {
-		  background-color: #D0CCD0; 
-		}
-		.card2:hover {
-		  background-color: #D0CCD0;
-		}
+    /* Header */
+    .page-header{
+      background:var(--surface);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:18px 20px;
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+    }
 
-		@media (max-width: 768px) {
-		  .feature-cards {
-			flex-direction: column;
-			gap: 20px;
-		  }
-		}
-	</style>
+    .page-header h2{
+      font-size:var(--h1);
+      letter-spacing:-0.5px;
+    }
+
+    .page-header p{
+      margin-top:6px;
+      font-size:var(--body);
+      color:var(--muted);
+      max-width:65ch;
+    }
+
+    .actions{
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+
+    .btn{
+      padding:10px 14px;
+      border-radius:12px;
+      border:1px solid var(--border);
+      background:var(--surface);
+      text-decoration:none;
+      color:var(--text);
+      font-weight:600;
+      font-size:13px;
+      transition:.2s;
+    }
+
+    .btn:hover{
+      transform:translateY(-1px);
+      border-color:rgba(79,70,229,.35);
+      background:rgba(79,70,229,.05);
+    }
+
+    .btn-primary{
+      background:var(--primary);
+      color:#fff;
+      border-color:rgba(79,70,229,.35);
+    }
+
+    .btn-primary:hover{
+      background:var(--primary-2);
+    }
+
+    /* Card container */
+    .card-box{
+      background:var(--surface);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow-sm);
+      padding:18px;
+      display:grid;
+      gap:14px;
+    }
+
+    .card-top{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      border-bottom:1px solid var(--border);
+      padding-bottom:12px;
+    }
+
+    .badge{
+      font-size:12px;
+      font-weight:700;
+      padding:6px 12px;
+      border-radius:999px;
+      background:rgba(79,70,229,.1);
+      color:var(--primary);
+      border:1px solid rgba(79,70,229,.18);
+    }
+
+    .hint{
+      font-size:13px;
+      color:var(--muted);
+      font-weight:600;
+    }
+
+    /* Cards */
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:14px;
+    }
+
+    .choice{
+      padding:18px;
+      border-radius:14px;
+      border:1px solid var(--border);
+      background:linear-gradient(180deg,#fff,var(--surface-2));
+      text-decoration:none;
+      color:var(--text);
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      min-height:170px;
+      transition:.2s;
+    }
+
+    .choice:hover{
+      transform:translateY(-3px);
+      border-color:rgba(79,70,229,.35);
+      background:linear-gradient(180deg,#fff,rgba(79,70,229,.06));
+    }
+
+    .choice h3{
+      font-size:18px;
+      font-weight:800;
+    }
+
+    .choice p{
+      font-size:13px;
+      color:var(--muted);
+      margin-top:6px;
+      line-height:1.4;
+    }
+
+    .cta{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-top:12px;
+      font-size:13px;
+      font-weight:700;
+      color:var(--primary);
+    }
+
+    .arrow{
+      width:34px;
+      height:34px;
+      border-radius:12px;
+      display:grid;
+      place-items:center;
+      background:rgba(79,70,229,.08);
+      border:1px solid rgba(79,70,229,.18);
+    }
+
+    @media(max-width:820px){
+      .grid{grid-template-columns:1fr;}
+    }
+  </style>
 </head>
+
 <body>
-  
-  <main class="main-content">
-    <section class="features">
-      <h1>Pick an activation function</h1>
-      
-      <div class="feature-cards">
-        <a href="{{ url_for('fish_ackley') }}"  class="card1">Ackley activation function</a>
-        <a href="{{ url_for('fish_michalewicz') }}" class="card2">Michalewicz activation function</a>
+  <div class="page">
+
+    <section class="page-header">
+      <div>
+        <h2>Pick an activation function</h2>
+        <p>Select the benchmark function to run with the Fish algorithm.</p>
+      </div>
+
+      <div class="actions">
+        <a href="{{ url_for('vis') }}" class="btn">Back to Visualize</a>
+        <a href="{{ url_for('summary_act') }}" class="btn btn-primary">Compare Algorithms</a>
       </div>
     </section>
-  </main>
 
+    <section class="card-box">
+      <div class="card-top">
+        <span class="badge">Fish Algorithm</span>
+        <span class="hint">Choose one to continue</span>
+      </div>
+
+      <div class="grid">
+        <a href="{{ url_for('fish_ackley') }}" class="choice">
+          <div>
+            <h3>Ackley</h3>
+            <p>
+              A classic multimodal function used to test global exploration
+              and avoidance of local minima.
+            </p>
+          </div>
+          <div class="cta">
+            Start with Ackley
+            <span class="arrow">→</span>
+          </div>
+        </a>
+
+        <a href="{{ url_for('fish_michalewicz') }}" class="choice">
+          <div>
+            <h3>Michalewicz</h3>
+            <p>
+              A challenging non-convex function that evaluates convergence
+              and exploitation behavior.
+            </p>
+          </div>
+          <div class="cta">
+            Start with Michalewicz
+            <span class="arrow">→</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+  </div>
 </body>
 </html>

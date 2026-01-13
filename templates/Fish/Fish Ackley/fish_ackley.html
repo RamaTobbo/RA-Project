@@ -1,9 +1,198 @@
-<html>
-    <head>
-        <title>Testing iframe</title>
-        <link rel="stylesheet" type="text/css" href="style.css">
-    </head>
-    <body>
-        <iframe src="{{ url_for('fish_ack') }}" style="height: 603px;width:603px;display:block; margin: 50 auto;" title="description"></iframe>
-    </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Metaheuristics — Preview</title>
+
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#F9FAFB;
+      --surface:#FFFFFF;
+      --surface-2:#F3F4F6;
+      --text:#111827;
+      --muted:#6B7280;
+      --border:#E5E7EB;
+
+      --primary:#4F46E5;
+      --primary-2:#4338CA;
+
+      --radius:16px;
+      --shadow:0 10px 25px rgba(17,24,39,.06);
+      --shadow-sm:0 4px 14px rgba(17,24,39,.06);
+
+      --h1:30px;
+      --body:15px;
+    }
+
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{
+      font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      min-height:100vh;
+    }
+
+    .page{
+      max-width:1100px;
+      margin:0 auto;
+      padding:24px;
+      display:grid;
+      gap:18px;
+      align-content:start;
+    }
+
+   
+    .page-header{
+      background:var(--surface);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:18px 20px;
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+    .page-header h2{
+      font-size:var(--h1);
+      letter-spacing:-0.5px;
+      line-height:1.1;
+    }
+    .page-header p{
+      margin-top:6px;
+      font-size:var(--body);
+      color:var(--muted);
+      max-width:65ch;
+    }
+
+    .actions{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+    .btn{
+      padding:10px 14px;
+      border-radius:12px;
+      border:1px solid var(--border);
+      background:var(--surface);
+      text-decoration:none;
+      color:var(--text);
+      font-weight:600;
+      font-size:13px;
+      transition:.2s;
+      cursor:pointer;
+    }
+    .btn:hover{
+      transform:translateY(-1px);
+      border-color:rgba(79,70,229,.35);
+      background:rgba(79,70,229,.05);
+    }
+    .btn-primary{
+      background:var(--primary);
+      color:#fff;
+      border-color:rgba(79,70,229,.35);
+    }
+    .btn-primary:hover{ background:var(--primary-2); }
+
+  
+    .card-box{
+      background:var(--surface);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow-sm);
+      padding:18px;
+      display:grid;
+      gap:14px;
+    }
+
+    .card-top{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      border-bottom:1px solid var(--border);
+      padding-bottom:12px;
+    }
+
+    .badge{
+      font-size:12px;
+      font-weight:700;
+      padding:6px 12px;
+      border-radius:999px;
+      background:rgba(79,70,229,.1);
+      color:var(--primary);
+      border:1px solid rgba(79,70,229,.18);
+    }
+
+    .hint{
+      font-size:13px;
+      color:var(--muted);
+      font-weight:600;
+    }
+
+ .frame{
+  width: 620px;        
+  max-width: 100%;
+  height: 620px;
+  margin: 0 auto;       
+  border-radius: 14px;
+  border: 1px solid rgba(79,70,229,.12);
+  background: var(--surface-2);
+  overflow: hidden;
+}
+
+
+    iframe{
+      width:100%;
+      height:100%;
+      border:0;
+      display:block;
+      background:#fff;
+    }
+
+    @media(max-width:820px){
+      .frame{ height:520px; }
+    }
+    @media(max-width:520px){
+      .frame{ height:420px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+
+    <section class="page-header">
+      <div>
+        <h2>Wolf — Ackley Preview</h2>
+        <p>
+          This page embeds the visualization inside an iframe while keeping the same clean UI design.
+        </p>
+      </div>
+
+      <div class="actions">
+        <a href="{{ url_for('vis') }}" class="btn">Back to Visualize</a>
+        <a href="{{ url_for('summary_act') }}" class="btn btn-primary">Compare Algorithms</a>
+      </div>
+    </section>
+
+    <section class="card-box">
+      <div class="card-top">
+        <span class="badge">Embedded view</span>
+        <span class="hint">Scroll inside if needed</span>
+      </div>
+
+      <div class="frame">
+        <iframe src="{{ url_for('fish_ack') }}" title="Wolf Ackley"></iframe>
+      </div>
+    </section>
+
+  </div>
+</body>
 </html>

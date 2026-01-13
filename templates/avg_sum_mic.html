@@ -1,72 +1,306 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Average fitness</title>
-	<style>
-		html, body {
-			height: 100%;
-			margin: 0;
-		}
-		body {
-			display: flex;
-			flex-direction: column;
-		}
-		.container {
-			flex: 1;
-			display: flex;
-			flex-direction: row;
-			overflow: auto; /* Enable horizontal scrolling if necessary */
-		}
-		.box {
-			flex: 1;
-			display: flex;
-			flex-direction: row;
-			align-items: center; /* Center the plots vertically */
-			justify-content: space-between; /* Distribute the plots evenly */
-		}
-		.inner-box {
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			align-items: center;
-			border: 1px solid black;
-			padding: 10px; /* Added padding for spacing */
-			width: 25%; /* Set the width to 25% to display four plots on the same line */
-			box-sizing: border-box; /* Include padding in the width calculation */
-		}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Metaheuristics — Average Fitness</title>
 
-		.inner-box h2 {
-			margin-top: 0;
-			text-align: center;
-		}
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-		img {
-			max-width: 100%; /* Make the plots responsive and fit within the inner box */
-			height: auto; /* Maintain aspect ratio of the plots */
-		}
-	</style>
+  <style>
+    :root{
+      --bg:#F9FAFB;
+      --surface:#FFFFFF;
+      --surface-2:#F3F4F6;
+      --text:#111827;
+      --muted:#6B7280;
+      --border:#E5E7EB;
+
+      --primary:#4F46E5;
+      --primary-2:#4338CA;
+
+      --radius:16px;
+      --shadow:0 10px 25px rgba(17,24,39,.06);
+      --shadow-sm:0 4px 14px rgba(17,24,39,.06);
+
+      --h1:30px;
+      --body:15px;
+      --focus:0 0 0 3px rgba(79,70,229,.25);
+    }
+
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{
+      font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      min-height:100vh;
+    }
+
+    .page{
+      max-width:1100px;
+      margin:0 auto;
+      padding:24px;
+      display:grid;
+      gap:18px;
+      align-content:start;
+    }
+
+  
+    .page-header{
+      position:relative;
+      background:var(--surface);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:18px 20px;
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      overflow:hidden;
+    }
+    .page-header::before{
+      content:"";
+      position:absolute;
+      top:0; left:0; right:0;
+      height:3px;
+      background:linear-gradient(90deg,var(--primary),rgba(79,70,229,.25));
+    }
+
+    .page-header h2{
+      font-size:var(--h1);
+      letter-spacing:-0.5px;
+      line-height:1.1;
+    }
+
+    .page-header p{
+      margin-top:6px;
+      font-size:var(--body);
+      color:var(--muted);
+      max-width:70ch;
+      line-height:1.55;
+    }
+
+    .actions{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:10px 14px;
+      border-radius:12px;
+      border:1px solid var(--border);
+      background:var(--surface);
+      text-decoration:none;
+      color:var(--text);
+      font-weight:600;
+      font-size:13px;
+      transition:.2s;
+      cursor:pointer;
+      white-space:nowrap;
+    }
+    .btn:hover{
+      transform:translateY(-1px);
+      border-color:rgba(79,70,229,.35);
+      background:rgba(79,70,229,.05);
+    }
+    .btn:focus{ outline:none; box-shadow:var(--focus); }
+
+    .btn-primary{
+      background:var(--primary);
+      color:#fff;
+      border-color:rgba(79,70,229,.35);
+    }
+    .btn-primary:hover{ background:var(--primary-2); }
+
+    
+    .card-box{
+      background:var(--surface);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow-sm);
+      padding:18px;
+      display:grid;
+      gap:14px;
+    }
+
+    .card-top{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      border-bottom:1px solid var(--border);
+      padding-bottom:12px;
+      flex-wrap:wrap;
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-size:12px;
+      font-weight:800;
+      padding:6px 12px;
+      border-radius:999px;
+      background:rgba(79,70,229,.1);
+      color:var(--primary);
+      border:1px solid rgba(79,70,229,.18);
+    }
+
+    .hint{
+      font-size:13px;
+      color:var(--muted);
+      font-weight:600;
+    }
+
+   
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:14px;
+    }
+
+    .algo-card{
+      border:1px solid var(--border);
+      border-radius:14px;
+      background:linear-gradient(180deg,#fff,var(--surface-2));
+      overflow:hidden;
+      transition:.2s;
+      display:grid;
+      min-height:260px;
+    }
+
+    .algo-card:hover{
+      transform:translateY(-3px);
+      border-color:rgba(79,70,229,.35);
+      background:linear-gradient(180deg,#fff,rgba(79,70,229,.06));
+    }
+
+    .algo-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:12px;
+      border-bottom:1px solid var(--border);
+      background:rgba(255,255,255,.6);
+    }
+
+    .algo-name{
+      font-weight:800;
+      font-size:14px;
+    }
+
+    .pill{
+      font-size:11px;
+      font-weight:800;
+      padding:5px 10px;
+      border-radius:999px;
+      border:1px solid rgba(79,70,229,.18);
+      background:rgba(79,70,229,.08);
+      color:var(--primary);
+    }
+
+    .media{
+      padding:12px;
+      display:grid;
+      place-items:center;
+      background:var(--surface-2);
+    }
+
+    .media img{
+      width:100%;
+      height:220px;
+      object-fit:contain;
+      border-radius:12px;
+      background:#fff;
+      border:1px solid rgba(79,70,229,.12);
+    }
+
+    @media(max-width:1100px){
+      .grid{grid-template-columns:repeat(2,1fr);}
+    }
+    @media(max-width:600px){
+      .grid{grid-template-columns:1fr;}
+      .media img{height:240px;}
+    }
+  </style>
 </head>
+
 <body>
-	<div class="container">
-		<div class="box">
-			<div class="inner-box" id="box1">
-				<h2>Wolf</h2>
-				<img  src="{{ url_for('static', filename='assets/images/wolf_mic_average.gif') }}" alt="GIF 1">
-			</div>
-			<div class="inner-box" id="box2">
-				<h2>Bee</h2>
-				<img  src="{{ url_for('static', filename='assets/images/bee_mic_average.gif') }}" alt="GIF 2">
-			</div>
-			<div class="inner-box" id="box3">
-				<h2>Bat</h2>
-				<img  src="{{ url_for('static', filename='assets/images/bat_mic_average.gif') }}" alt="GIF 3">
-			</div>
-			<div class="inner-box" id="box4">
-				<h2>Fish</h2>
-				<img  src="{{ url_for('static', filename='assets/images/fish_mic_average.gif') }}" alt="GIF 4">
-			</div>
-		</div>
-	</div>
+  <div class="page">
+
+    <section class="page-header">
+      <div>
+        <h2>Average Fitness — Michalewicz</h2>
+        <p>
+          Comparison of the average fitness value per iteration
+          for the Michalewicz benchmark function.
+        </p>
+      </div>
+
+      <div class="actions">
+        <a href="{{ url_for('summary_act') }}" class="btn">Back</a>
+        <a href="{{ url_for('vis') }}" class="btn btn-primary">Visualize</a>
+      </div>
+    </section>
+
+    <section class="card-box">
+      <div class="card-top">
+        <span class="badge">Michalewicz • Average Fitness</span>
+        <span class="hint">Mean population performance</span>
+      </div>
+
+      <div class="grid">
+        <div class="algo-card">
+          <div class="algo-head">
+            <span class="algo-name">Wolf</span>
+            <span class="pill">GIF</span>
+          </div>
+          <div class="media">
+            <img src="{{ url_for('static', filename='assets/images/wolf_mic_average.gif') }}" alt="Wolf Average Fitness">
+          </div>
+        </div>
+
+        <div class="algo-card">
+          <div class="algo-head">
+            <span class="algo-name">Bee</span>
+            <span class="pill">GIF</span>
+          </div>
+          <div class="media">
+            <img src="{{ url_for('static', filename='assets/images/bee_mic_average.gif') }}" alt="Bee Average Fitness">
+          </div>
+        </div>
+
+        <div class="algo-card">
+          <div class="algo-head">
+            <span class="algo-name">Bat</span>
+            <span class="pill">GIF</span>
+          </div>
+          <div class="media">
+            <img src="{{ url_for('static', filename='assets/images/bat_mic_average.gif') }}" alt="Bat Average Fitness">
+          </div>
+        </div>
+
+        <div class="algo-card">
+          <div class="algo-head">
+            <span class="algo-name">Fish</span>
+            <span class="pill">GIF</span>
+          </div>
+          <div class="media">
+            <img src="{{ url_for('static', filename='assets/images/fish_mic_average.gif') }}" alt="Fish Average Fitness">
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
 </body>
 </html>
