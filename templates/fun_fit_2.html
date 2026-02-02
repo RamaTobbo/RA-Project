@@ -1,97 +1,345 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Fitness</title>
-	<style>
-		html, body {
-			height: 100%;
-			margin: 0;
-			padding: 0;
-		}
-		
-		/* Style for the two divisions */
-		.top {
-			height: 50%;
-			background-color: #585858;
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			align-items: center;
-		}
-		
-		.bottom {
-			height: 50%;
-			/* background-color: #585858; */
-			display: flex;
-			flex-direction: row;
-		}
-		
-		
-		
-		/* Style for the header in the top division */
-		.top-header {
-			text-align: center;
-			font-size: 1.5em;
-			margin-top: 20px;
-		}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Metaheuristics — Fitness Results</title>
 
-	.bottom-left {
-			flex: 1;
-			padding: 20px;
-			background-color: #F5F5F5;
-			color: #585858;
-			height: 100%;
-			text-align: center;
-			font-size: 2.5em;
-			border: 3px solid #585858; /* add border style */
-    		border-radius: 5px;
-			cursor: pointer;
-			display: flex;
-  			justify-content: center;
-  			align-items: center;
-		}
-		
-.bottom-right {
-			flex: 1;
-			height: 100%;
-			padding: 20px;
-			background-color: #F5F5F5;
-			color: #585858;
-			text-align: center;
-			font-size: 2.5em;
-			border: 3px solid #585858; /* add border style */
-            border-radius: 5px;
-			cursor: pointer;
-			display: flex;
-  			justify-content: center;
-  			align-items: center;
-		}
-		a {
-			text-decoration: none;
-		}
-	</style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#F9FAFB; --surface:#FFFFFF; --surface-2:#F3F4F6;
+      --text:#111827; --muted:#6B7280; --border:#E5E7EB;
+      --primary:#4F46E5; --primary-2:#4338CA; --accent:#06B6D4;
+      --radius:16px; --shadow:0 10px 25px rgba(17,24,39,.06);
+      --shadow-sm:0 4px 14px rgba(17,24,39,.06);
+      --sidebar-w:240px; --container-pad:24px; --gap:18px;
+      --h1:30px; --body:15px;
+      --focus:0 0 0 3px rgba(79,70,229,.25);
+    }
+
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html,body{height:100%;}
+    body{
+      font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+    }
+
+    .app{
+      display:grid;
+      grid-template-columns:var(--sidebar-w) 1fr;
+      gap:var(--gap);
+      min-height:100vh;
+      padding:var(--container-pad);
+    }
+
+    /* Sidebar */
+    .sidebar{
+      background:var(--surface);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow-sm);
+      padding:18px;
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+      position:sticky;
+      top:24px;
+      height:calc(100vh - 48px);
+    }
+
+    .brand{
+      display:flex;align-items:center;gap:10px;
+      padding:10px 10px 14px;
+      border-bottom:1px solid var(--border);
+    }
+    .brand-badge{
+      width:38px;height:38px;border-radius:12px;
+      background:linear-gradient(135deg,var(--primary),var(--accent));
+      box-shadow:var(--shadow-sm);
+    }
+    .brand h1{font-size:16px;font-weight:700;letter-spacing:.2px;}
+    .brand p{font-size:12px;color:var(--muted);margin-top:2px;}
+
+    nav ul{
+      list-style:none;
+      padding:12px 6px;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+
+    .nav-link{
+      display:flex;align-items:center;gap:10px;
+      text-decoration:none;
+      color:var(--muted);
+      font-weight:500;
+      font-size:14px;
+      padding:10px 12px;
+      border-radius:12px;
+      transition:background .2s,color .2s,transform .2s;
+    }
+    .nav-link:hover{background:var(--surface-2);color:var(--text);transform:translateY(-1px);}
+    .nav-link.active{
+      background:rgba(79,70,229,.10);
+      color:var(--primary);
+      box-shadow:inset 3px 0 0 var(--primary);
+    }
+
+    .nav-dot{
+      width:9px;height:9px;border-radius:999px;
+      background:var(--border);
+      flex:0 0 auto;
+    }
+    .nav-link.active .nav-dot{background:var(--primary);}
+    .nav-link:hover .nav-dot{background:var(--primary);}
+
+    .sidebar-footer{
+      margin-top:auto;
+      background:var(--surface-2);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:14px;
+      display:grid;
+      gap:10px;
+    }
+    .sidebar-footer h3{font-size:14px;font-weight:700;}
+    .sidebar-footer p{font-size:12px;color:var(--muted);line-height:1.4;}
+
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:10px 12px;border-radius:12px;border:1px solid var(--border);
+      background:var(--surface);color:var(--text);text-decoration:none;
+      font-weight:600;font-size:13px;
+      transition:transform .2s,border-color .2s,background .2s;
+      cursor:pointer;
+    }
+    .btn:hover{
+      transform:translateY(-1px);
+      border-color:rgba(79,70,229,.35);
+      background:rgba(79,70,229,.05);
+    }
+    .btn:focus{outline:none;box-shadow:var(--focus);}
+    .btn-primary{
+      border-color:rgba(79,70,229,.35);
+      background:var(--primary);
+      color:#fff;
+    }
+    .btn-primary:hover{background:var(--primary-2);border-color:rgba(79,70,229,.55);}
+
+    /* Main */
+    .main{display:grid;gap:18px;align-content:start;}
+
+    .page-header{
+      background:var(--surface);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:18px 20px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+    .page-header h2{font-size:var(--h1);letter-spacing:-.5px;line-height:1.1;}
+    .page-header p{color:var(--muted);font-size:var(--body);margin-top:6px;max-width:70ch;}
+    .header-left{display:grid;gap:6px;}
+    .header-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap;}
+
+    /* Cards */
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(260px, 1fr));
+      gap:14px;
+    }
+
+    .card{
+      background:var(--surface);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow-sm);
+      padding:16px;
+      text-decoration:none;
+      color:inherit;
+      transition:transform .2s, box-shadow .2s, border-color .2s;
+      display:grid;
+      gap:12px;
+      min-height:210px;
+    }
+    .card:hover{
+      transform:translateY(-3px);
+      border-color:rgba(79,70,229,.25);
+      box-shadow:0 14px 30px rgba(17,24,39,.08);
+    }
+
+    .card-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+
+    .card-icon{
+      width:42px;height:42px;border-radius:14px;
+      background:rgba(79,70,229,.10);
+      border:1px solid rgba(79,70,229,.18);
+      display:grid;place-items:center;
+      font-weight:800;color:var(--primary);
+      flex:0 0 auto;
+    }
+
+    .chip{
+      font-size:12px;font-weight:600;
+      color:var(--primary);
+      background:rgba(79,70,229,.10);
+      border:1px solid rgba(79,70,229,.16);
+      padding:6px 10px;border-radius:999px;
+    }
+
+    .card h3{font-size:16px;font-weight:700;letter-spacing:-.1px;margin-top:2px;}
+    .card p{font-size:13px;color:var(--muted);line-height:1.45;}
+
+    .card-media{
+      aspect-ratio:16/9;
+      width:100%;
+      border-radius:14px;
+      background:#fff;
+      border:1px solid rgba(79,70,229,.12);
+      overflow:hidden;
+      display:grid;
+      place-items:center;
+    }
+
+    .preview{
+      width:84px;height:84px;border-radius:22px;
+      background:rgba(79,70,229,.10);
+      border:1px solid rgba(79,70,229,.18);
+      display:grid;place-items:center;
+      color:var(--primary);
+      font-weight:800;
+      font-size:26px;
+    }
+
+    @media (max-width: 1100px){
+      .cards{ grid-template-columns:1fr; }
+    }
+
+    @media (max-width: 820px){
+      .app{ grid-template-columns:1fr; padding:14px; }
+      .sidebar{ position:relative; top:0; height:auto; }
+      nav ul{ flex-direction:row; flex-wrap:wrap; }
+      .nav-link{ flex:1 1 auto; }
+    }
+  </style>
 </head>
+
 <body>
-	<!-- Top division -->
-	<div class="top">
-		<div class="top-header">
-			<h1 style="color: white;">Do you want to compare the algorithms based on the average or best fitness at each iteration?</h1>
-		</div>
-	</div>
-	
-	<!-- Bottom division -->
-	<div class="bottom">
-	  <a href="avg_sum_fun.html" style="width: 100%;">
-	    <div class="bottom-left">
-	      Average fitness
-	    </div>
-	  </a>
-	  <a href="best_sum_fun.html" style="width: 100%;">
-	    <div class="bottom-right">
-	      Best fitness
-	    </div>
-	  </a>
-	</div>
+  <div class="app">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-badge" aria-hidden="true"></div>
+        <div>
+          <h1>Metaheuristics</h1>
+          <p>Learn • Visualize • Compare</p>
+        </div>
+      </div>
+
+      <nav>
+        <ul>
+          <li>
+            <a class="nav-link" href="{{ url_for('home') }}">
+              <span class="nav-dot" aria-hidden="true"></span>
+              Home
+            </a>
+          </li>
+
+          <li>
+            <a class="nav-link" href="{{ url_for('learn') }}">
+              <span class="nav-dot" aria-hidden="true"></span>
+              Learn
+            </a>
+          </li>
+
+          <li>
+            <a class="nav-link" href="{{ url_for('vis') }}">
+              <span class="nav-dot" aria-hidden="true"></span>
+              Visualize
+            </a>
+          </li>
+
+          <li>
+            <a class="nav-link active" href="{{ url_for('summary_act') }}">
+              <span class="nav-dot" aria-hidden="true"></span>
+              Compare
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-footer">
+        <h3>Tip</h3>
+        <p>Pick Average or Best fitness to see the generated GIF results for your custom function.</p>
+        <a class="btn btn-primary" href="{{ url_for('custom_fit') }}">Back to Custom</a>
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="main">
+
+      <section class="page-header">
+        <div class="header-left">
+          <h2>Choose Fitness Type</h2>
+          <p>Do you want to compare the algorithms using the <b>Average</b> or <b>Best</b> fitness value per iteration?</p>
+        </div>
+
+        <div class="header-actions">
+          <a class="btn" href="{{ url_for('custom_fit') }}">Edit Function</a>
+          <a class="btn btn-primary" href="{{ url_for('summary_act') }}">Back to Compare</a>
+        </div>
+      </section>
+
+      <section class="cards">
+
+        <!-- Average -->
+        <a class="card" href="{{ url_for('avg_sum_fun') }}">
+          <div class="card-top">
+            <div class="card-icon" aria-hidden="true">Avg</div>
+            <span class="chip">Mean</span>
+          </div>
+
+          <div class="card-media">
+            <div class="preview" aria-hidden="true">∑</div>
+          </div>
+
+          <h3>Average Fitness</h3>
+          <p>Compare algorithms using the mean fitness value at each iteration (overall performance).</p>
+        </a>
+
+        <!-- Best -->
+        <a class="card" href="{{ url_for('best_sum_fun') }}">
+          <div class="card-top">
+            <div class="card-icon" aria-hidden="true">Best</div>
+            <span class="chip">Min</span>
+          </div>
+
+          <div class="card-media">
+            <div class="preview" aria-hidden="true">★</div>
+          </div>
+
+          <h3>Best Fitness</h3>
+          <p>Compare algorithms using the best fitness found at each iteration (best-so-far).</p>
+        </a>
+
+      </section>
+
+    </main>
+  </div>
 </body>
 </html>

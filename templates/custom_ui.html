@@ -1,0 +1,80 @@
+<!-- templates/custom_ui.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Custom Function Builder</title>
+  <style>
+    body{font-family: Arial, sans-serif;padding:20px;}
+    textarea{width:100%;height:140px;font-family: monospace;}
+    input, select{padding:8px;margin:6px 10px 6px 0;}
+    button{margin-top:10px;padding:10px 14px;cursor:pointer;}
+    .row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:10px 0;}
+    .hint{color:#666;font-size:13px;margin-top:6px;line-height:1.4;}
+  </style>
+</head>
+<body>
+
+  <h2>Enter your custom fitness function</h2>
+
+  <p class="hint">
+    Use variables like: <code>x0, x1, x2 ...</code><br>
+    Example (2D): <code>x0**2 + x1**2</code>
+  </p>
+
+  <form method="post" action="{{ url_for('run_custom') }}">
+    <div class="row">
+
+  
+
+      <label>Preset:</label>
+      <select id="preset" name="preset">
+        <option value="custom">Custom</option>
+        
+      </select>
+
+      <label>Dimension:</label>
+      <input id="dim" type="number" name="dim" value="2" min="1" max="50">
+
+      <label>Lower bound:</label>
+      <input id="lb" type="number" step="0.1" name="lb" value="-5">
+
+      <label>Upper bound:</label>
+      <input id="ub" type="number" step="0.1" name="ub" value="5">
+    </div>
+
+    <textarea id="expr" name="expr" placeholder="Example: x0**2 + x1**2"></textarea>
+    <br>
+    <button type="submit">Run</button>
+  </form>
+
+  <script>
+    const preset = document.getElementById("preset");
+    const expr = document.getElementById("expr");
+    const dim = document.getElementById("dim");
+    const lb = document.getElementById("lb");
+    const ub = document.getElementById("ub");
+
+    const presets = {
+      custom: { expr: "", dim: 2, lb: -5, ub: 5 },
+      ackley: {
+       
+        expr: "-20*exp(-0.2*sqrt((x0**2 + x1**2)/2)) - exp((cos(2*pi*x0)+cos(2*pi*x1))/2) + 20 + e",
+        dim: 2, lb: -5, ub: 5
+      },
+      michalewicz: {
+        expr: "-1*( sin(x0)*(sin((1*x0**2)/pi)**20) + sin(x1)*(sin((2*x1**2)/pi)**20) )",
+        dim: 2, lb: 0, ub: 3
+      }
+    };
+
+    preset.addEventListener("change", () => {
+      const p = presets[preset.value];
+      expr.value = p.expr;
+      dim.value = p.dim;
+      lb.value = p.lb;
+      ub.value = p.ub;
+    });
+  </script>
+
+</body>
+</html>

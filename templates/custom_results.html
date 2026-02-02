@@ -1,0 +1,71 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+  <title>Results</title>
+</head>
+<body>
+  <h2>Algorithm Results</h2>
+
+  <h3>Best Fitness (Animated)</h3>
+  <img src="/static/GeneratedData/Wolf_Fun_Best.gif" width="480">
+  <img src="/static/GeneratedData/Bee_Fun_Best.gif" width="480">
+  <img src="/static/GeneratedData/Bat_Fun_Best.gif" width="480">
+  <img src="/static/GeneratedData/Fish_Fun_Best.gif" width="480">
+
+  <h3>Average Fitness (Animated)</h3>
+  <img src="/static/GeneratedData/Wolf_Fun_Average.gif" width="480">
+  <img src="/static/GeneratedData/Bee_Fun_Average.gif" width="480">
+  <img src="/static/GeneratedData/Bat_Fun_Average.gif" width="480">
+  <img src="/static/GeneratedData/Fish_Fun_Average.gif" width="480">
+
+  <p><a href="/">Run another function</a></p>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Custom Results</title>
+  <style>
+    body{font-family:Inter,Arial;background:#F9FAFB;margin:0;padding:24px;color:#111827}
+    .wrap{max-width:1100px;margin:0 auto}
+    .card{background:#fff;border:1px solid #E5E7EB;border-radius:16px;padding:16px;box-shadow:0 4px 14px rgba(17,24,39,.06);margin-bottom:14px}
+    .grid{display:grid;grid-template-columns:repeat(2,minmax(240px,1fr));gap:14px}
+    .algo{display:grid;gap:10px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 12px;border-radius:12px;border:1px solid #E5E7EB;
+      background:#fff;color:#111827;text-decoration:none;font-weight:700;font-size:13px;gap:8px}
+    .btn:hover{background:#F3F4F6}
+    .btn-primary{background:#4F46E5;color:#fff;border-color:#4F46E5}
+    .btn-primary:hover{background:#4338CA}
+    .muted{color:#6B7280}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="card">
+    <h2 style="margin:0">Results Generated </h2>
+    <p class="muted" style="margin:8px 0 0">
+      Function: <b>{{ expr }}</b><br>
+      Bounds: [{{ lb }}, {{ ub }}] — Population: {{ it }} — Iterations: {{ gen }}
+    </p>
+    <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+      <a class="btn" href="{{ url_for('custom_fit') }}">Back</a>
+      <a class="btn btn-primary" href="{{ url_for('home') }}">Home</a>
+    </div>
+  </div>
+
+  <div class="grid">
+    {% for a in ["wolf","bee","bat","fish"] %}
+    <div class="card algo">
+      <h3 style="margin:0;text-transform:capitalize">{{ a }}</h3>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <a class="btn btn-primary" href="{{ url_for('gif_page', algo=a, metric='best') }}">Best GIF</a>
+        <a class="btn" href="{{ url_for('gif_page', algo=a, metric='average') }}">Average GIF</a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+</body>
+</html>

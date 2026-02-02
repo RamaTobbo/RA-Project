@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GIF View</title>
+  <style>
+    body{font-family:Inter,Arial;background:#F9FAFB;margin:0;padding:24px;color:#111827}
+    .wrap{max-width:1100px;margin:0 auto}
+    .card{background:#fff;border:1px solid #E5E7EB;border-radius:16px;padding:16px;box-shadow:0 4px 14px rgba(17,24,39,.06);margin-bottom:14px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 12px;border-radius:12px;border:1px solid #E5E7EB;
+      background:#fff;color:#111827;text-decoration:none;font-weight:700;font-size:13px}
+    .btn:hover{background:#F3F4F6}
+    .imgwrap{display:flex;justify-content:center}
+    img{width:520px;max-width:100%;border:1px solid #E5E7EB;border-radius:14px;background:#fff}
+    .muted{color:#6B7280}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="card">
+    <h2 style="margin:0;text-transform:capitalize">{{ algo }} — {{ metric }}</h2>
+    <p class="muted" style="margin:8px 0 0">Function: <b>{{ expr }}</b></p>
+    <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+      <a class="btn" href="{{ url_for('custom_results') }}">Back to Results</a>
+      <a class="btn" href="{{ url_for('custom_fit') }}">Back to Builder</a>
+    </div>
+  </div>
+
+  <div class="card imgwrap">
+    <img src="{{ url_for('static', filename='runs/' ~ run_id ~ '/' ~ gif_file) }}" alt="gif">
+  </div>
+</div>
+</body>
+</html>

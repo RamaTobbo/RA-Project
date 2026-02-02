@@ -1,0 +1,6 @@
+run_id=e5a57d24c0
+expr=x**2 + y**2
+lb=-5.0
+ub=5.0
+iterations=50
+pop=30

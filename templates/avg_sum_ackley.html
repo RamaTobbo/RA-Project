@@ -165,18 +165,15 @@
       grid-template-columns:repeat(4, minmax(0, 1fr));
       gap:14px;
     }
+.media img{ width:100%; height:220px;   cursor: zoom-in; object-fit:contain; border-radius:12px; background:#fff; border:1px solid rgba(79,70,229,.10); display:block; }
 
-    .algo-card{
-      border:1px solid var(--border);
-      border-radius:14px;
-      background:linear-gradient(180deg,#fff,var(--surface-2));
-      box-shadow:0 1px 0 rgba(17,24,39,.02);
-      overflow:hidden;
-      transition:.2s;
-      display:grid;
-      align-content:start;
-      min-height: 260px;
-    }
+.algo-card{ border:1px solid var(--border); border-radius:14px; background:linear-gradient(180deg,#fff,var(--surface-2)); box-shadow:0 1px 0 rgba(17,24,39,.02); overflow:hidden; transition:.2s; display:grid; align-content:start; min-height: 260px; }
+
+.media img:hover{
+  transform: scale(1.03);
+  transition: .2s;
+}
+
 
     .algo-card:hover{
       transform:translateY(-3px);
@@ -218,15 +215,7 @@
       background:var(--surface-2);
     }
 
-    .media img{
-      width:100%;
-      height:220px;
-      object-fit:contain;
-      border-radius:12px;
-      background:#fff;
-      border:1px solid rgba(79,70,229,.10);
-      display:block;
-    }
+
 
     @media(max-width:1100px){
       .grid{ grid-template-columns:repeat(2, minmax(0,1fr)); }
@@ -269,7 +258,9 @@
             <span class="pill">GIF</span>
           </div>
           <div class="media">
+            <a href="{{ url_for('static', filename='assets/images/wolf_ackley.gif') }}" target="_blank">
             <img src="{{ url_for('static', filename='assets/images/wolf_ackley.gif') }}" alt="Wolf — Ackley Average Fitness">
+            </a>
           </div>
         </div>
 
@@ -279,7 +270,8 @@
             <span class="pill">GIF</span>
           </div>
           <div class="media">
-            <img src="{{ url_for('static', filename='assets/images/bee_ackley.gif') }}" alt="Bee — Ackley Average Fitness">
+            <a href="{{ url_for('static', filename='assets/images/bee_ackley.gif') }}" target="_blank">
+            <img src="{{ url_for('static', filename='assets/images/bee_ackley.gif') }}" alt="Bee — Ackley Average Fitness"></a>
           </div>
         </div>
 
@@ -289,7 +281,8 @@
             <span class="pill">GIF</span>
           </div>
           <div class="media">
-            <img src="{{ url_for('static', filename='assets/images/bat_ackley.gif') }}" alt="Bat — Ackley Average Fitness">
+             <a href="{{ url_for('static', filename='assets/images/bat_ackley.gif') }}" target="_blank">
+            <img src="{{ url_for('static', filename='assets/images/bat_ackley.gif') }}" alt="Bat — Ackley Average Fitness"></a>
           </div>
         </div>
 
@@ -299,7 +292,8 @@
             <span class="pill">GIF</span>
           </div>
           <div class="media">
-            <img src="{{ url_for('static', filename='assets/images/fish_ackley.gif') }}" alt="Fish — Ackley Average Fitness">
+               <a href="{{ url_for('static', filename='assets/images/fish_ackley.gif') }}" target="_blank">
+            <img src="{{ url_for('static', filename='assets/images/fish_ackley.gif') }}" alt="Fish — Ackley Average Fitness"></a>
           </div>
         </div>
       </div>

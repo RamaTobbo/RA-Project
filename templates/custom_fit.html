@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Custom Fitness</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#F9FAFB;--surface:#fff;--surface-2:#F3F4F6;--text:#111827;--muted:#6B7280;--border:#E5E7EB;
+      --primary:#4F46E5;--primary-2:#4338CA;--accent:#06B6D4;
+      --radius:16px;--shadow:0 10px 25px rgba(17,24,39,.06);--shadow-sm:0 4px 14px rgba(17,24,39,.06);
+      --sidebar-w:240px;--gap:18px;--pad:24px;--focus:0 0 0 3px rgba(79,70,229,.25);
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Inter,system-ui;background:var(--bg);color:var(--text)}
+    .app{display:grid;grid-template-columns:var(--sidebar-w) 1fr;gap:var(--gap);min-height:100vh;padding:var(--pad)}
+    .sidebar{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);
+      padding:18px;display:flex;flex-direction:column;gap:16px;position:sticky;top:24px;height:calc(100vh - 48px)}
+    .brand{display:flex;align-items:center;gap:10px;padding:10px 10px 14px;border-bottom:1px solid var(--border)}
+    .badge{width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,var(--primary),var(--accent));box-shadow:var(--shadow-sm)}
+    .brand h1{font-size:16px;font-weight:700}
+    .brand p{font-size:12px;color:var(--muted);margin-top:2px}
+    nav ul{list-style:none;padding:12px 6px;display:flex;flex-direction:column;gap:8px}
+    .nav-link{display:flex;gap:10px;align-items:center;text-decoration:none;color:var(--muted);font-weight:500;font-size:14px;
+      padding:10px 12px;border-radius:12px;transition:.2s}
+    .nav-link:hover{background:var(--surface-2);color:var(--text);transform:translateY(-1px)}
+    .nav-link.active{background:rgba(79,70,229,.10);color:var(--primary);box-shadow:inset 3px 0 0 var(--primary)}
+    .dot{width:9px;height:9px;border-radius:999px;background:var(--border)}
+    .nav-link.active .dot,.nav-link:hover .dot{background:var(--primary)}
+    .footer{margin-top:auto;background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius);padding:14px;display:grid;gap:10px}
+    .footer h3{font-size:14px;font-weight:700}
+    .footer p{font-size:12px;color:var(--muted);line-height:1.4}
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 12px;border-radius:12px;border:1px solid var(--border);
+      background:var(--surface);color:var(--text);text-decoration:none;font-weight:600;font-size:13px;transition:.2s}
+    .btn:hover{transform:translateY(-1px);border-color:rgba(79,70,229,.35);background:rgba(79,70,229,.05)}
+    .btn:focus{outline:none;box-shadow:var(--focus)}
+    .btn-primary{background:var(--primary);border-color:rgba(79,70,229,.35);color:#fff}
+    .btn-primary:hover{background:var(--primary-2)}
+    .main{display:grid;gap:18px;align-content:start}
+    .header{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);
+      padding:18px 20px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    .header h2{font-size:30px;letter-spacing:-.5px;line-height:1.1}
+    .header p{color:var(--muted);font-size:15px;margin-top:6px;max-width:70ch}
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:16px}
+    .err{color:#b00020;font-weight:600;white-space:pre-wrap}
+    iframe{width:100%;height:420px;border:1px solid var(--border);border-radius:14px;background:#fff}
+    @media (max-width:820px){
+      .app{grid-template-columns:1fr;padding:14px}
+      .sidebar{position:relative;top:0;height:auto}
+      nav ul{flex-direction:row;flex-wrap:wrap}
+      .nav-link{flex:1 1 auto}
+    }
+  </style>
+</head>
+
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="badge" aria-hidden="true"></div>
+      <div>
+        <h1>Metaheuristics</h1>
+        <p>Learn • Visualize • Compare</p>
+      </div>
+    </div>
+
+    <nav>
+      <ul>
+        <li><a class="nav-link" href="{{ url_for('home') }}"><span class="dot"></span>Home</a></li>
+        <li><a class="nav-link" href="{{ url_for('learn') }}"><span class="dot"></span>Learn</a></li>
+        <li><a class="nav-link" href="{{ url_for('vis') }}"><span class="dot"></span>Visualize</a></li>
+        <li><a class="nav-link" href="{{ url_for('summary_act') }}"><span class="dot"></span>Compare</a></li>
+        <li><a class="nav-link active" href="{{ url_for('custom_fit') }}"><span class="dot"></span>Custom</a></li>
+      </ul>
+    </nav>
+
+    <div class="footer">
+      <h3>Tip</h3>
+      <p>Enter your function and parameters, then submit. Results will be generated for all 4 algorithms.</p>
+      <a class="btn btn-primary" href="{{ url_for('home') }}">Back to Home</a>
+    </div>
+  </aside>
+
+  <main class="main">
+    <section class="header">
+      <div>
+        <h2>Custom Fitness Function</h2>
+        <p>Enter an equation and parameters. We run Wolf, Bee, Bat, and Fish automatically.</p>
+        {% if session.get("custom_error") %}
+          <div style="margin-top:10px" class="err">{{ session.get("custom_error") }}</div>
+        {% endif %}
+      </div>
+      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+        <a class="btn" href="{{ url_for('custom_results') }}">Results</a>
+        <a class="btn btn-primary" href="{{ url_for('summary_act') }}">Compare Page</a>
+      </div>
+    </section>
+
+    <section class="card">
+      <h3 style="margin-bottom:10px">Builder</h3>
+      <div class="card" style="margin-bottom:14px">
+  <h3 style="margin-bottom:8px">How to write the function</h3>
+
+  <ul style="padding-left:18px; font-size:14px; color:var(--muted); line-height:1.6">
+    <li>Use variables <b>x</b> and <b>y</b></li>
+    <li>Allowed operators: <code>+</code> <code>-</code> <code>*</code> <code>/</code> <code>^</code></li>
+    <li>Allowed functions: <code>sin</code>, <code>cos</code>, <code>tan</code>, <code>sqrt</code>, <code>exp</code></li>
+    <li>Constants: <code>pi</code>, <code>e</code></li>
+  </ul>
+
+  <div style="margin-top:10px; display:grid; gap:6px; font-size:13px">
+    <div><b>Examples:</b></div>
+    <code>x^2 + y^2</code>
+    <code>sin(x) + cos(y)</code>
+    <code>sqrt(x^2 + y^2)</code>
+    <code>-20*exp(-0.2*sqrt(0.5*(x^2+y^2)))</code>
+  </div>
+</div>
+
+      <iframe src="{{ url_for('custom_ui') }}"></iframe>
+    </section>
+  </main>
+</div>
+</body>
+</html>

@@ -1,72 +1,156 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Average fitness</title>
-	<style>
-		html, body {
-			height: 100%;
-			margin: 0;
-		}
-		body {
-			display: flex;
-			flex-direction: column;
-		}
-		.container {
-			flex: 1;
-			display: flex;
-			flex-direction: row;
-			overflow: auto;
-		}
-		.box {
-			flex: 1;
-			display: flex;
-			flex-direction: row;
-			align-items: center; 
-			justify-content: space-between; 
-		}
-		.inner-box {
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			align-items: center;
-			border: 1px solid black;
-			padding: 10px; 
-			width: 25%; 
-			box-sizing: border-box; 
-		}
-
-		.inner-box h2 {
-			margin-top: 0;
-			text-align: center;
-		}
-
-		img {
-			max-width: 100%; 
-			height: auto; 
-		}
-	</style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Average fitness</title>
+  <style>
+    html, body { height: 100%; margin: 0; }
+    body { display: flex; flex-direction: column; }
+    .container { flex: 1; display: flex; flex-direction: row; overflow: auto; }
+    .box { flex: 1; display: flex; flex-direction: row; align-items: center; justify-content: space-between; }
+    .inner-box {
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      border: 1px solid black; padding: 10px; width: 25%; box-sizing: border-box;
+    }
+    .inner-box h2 { margin-top: 0; text-align: center; }
+    img { max-width: 100%; height: auto; }
+  </style>
 </head>
 <body>
-	<div class="container">
-		<div class="box">
-			<div class="inner-box" id="box1">
-				<h2>Wolf</h2>
-				<img src="Code/GeneratedData/Wolf_Fun_Average.gif" alt="GIF 1">
-			</div>
-			<div class="inner-box" id="box2">
-				<h2>Bee</h2>
-				<img src="Code/GeneratedData/Bee_Fun_Average.gif" alt="GIF 2">
-			</div>
-			<div class="inner-box" id="box3">
-				<h2>Bat</h2>
-				<img src="Code/GeneratedData/Bat_Fun_Average.gif" alt="GIF 3">
-			</div>
-			<div class="inner-box" id="box4">
-				<h2>Fish</h2>
-				<img src="Code/GeneratedData/Fish_Fun_Average.gif" alt="GIF 4">
-			</div>
-		</div>
-	</div>
+  <div class="container">
+    <div class="box">
+      <div class="inner-box"><h2>Wolf</h2>
+        <img src="/static/runs/{{ run_id }}/Wolf_Fun_Average.gif" alt="Wolf Avg">
+      </div>
+
+      <div class="inner-box"><h2>Bee</h2>
+        <img src="/static/runs/{{ run_id }}/Bee_Fun_Average.gif" alt="Bee Avg">
+      </div>
+
+      <div class="inner-box"><h2>Bat</h2>
+        <img src="/static/runs {{ run_id }}/Bat_Fun_Average.gif" alt="Bat Avg">
+      </div>
+
+      <div class="inner-box"><h2>Fish</h2>
+        <img src="/static/runs/{{ run_id }}/Fish_Fun_Average.gif" alt="Fish Avg">
+      </div>
+    </div>
+  </div>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Average Fitness</title>
+
+  <style>
+    :root{
+      --bg: #F9FAFB;
+      --surface: #FFFFFF;
+      --border: #E5E7EB;
+      --text: #111827;
+      --muted: #6B7280;
+      --primary: #4F46E5;
+      --radius: 16px;
+      --shadow: 0 10px 25px rgba(17, 24, 39, 0.06);
+    }
+
+    body{
+      margin: 0;
+      background: var(--bg);
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
+    }
+
+    .wrap{
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    .card{
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 20px;
+    }
+
+    .header{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .header h2{
+      font-size: 20px;
+      margin: 0;
+    }
+
+    .badge{
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--primary);
+      background: rgba(79,70,229,0.1);
+      border: 1px solid rgba(79,70,229,0.2);
+      padding: 6px 10px;
+      border-radius: 999px;
+    }
+
+    .gif-box{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 14px;
+      background: #fff;
+      border: 1px dashed var(--border);
+      border-radius: 14px;
+    }
+
+    .gif-box img{
+      width: 520px;          
+      max-width: 100%;
+      border-radius: 12px;
+    }
+
+    .caption{
+      text-align: center;
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 10px;
+    }
+
+    @media (max-width: 700px){
+      .gif-box img{
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="card">
+
+      <div class="header">
+        <h2>Average Fitness</h2>
+        <span class="badge">Custom Function</span>
+      </div>
+
+      <div class="gif-box">
+        <img
+          src="/static/runs/{{ run_id }}/Custom_Fun_Average.gif"
+          alt="Average Fitness GIF"
+        >
+      </div>
+
+      <div class="caption">
+        Average fitness value per iteration
+      </div>
+
+    </div>
+  </div>
 </body>
 </html>

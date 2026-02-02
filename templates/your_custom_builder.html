@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Builder</title>
+  <style>
+    body { font-family: Inter, Arial, sans-serif; margin: 0; padding: 18px; background: #fff; }
+    .row { display: grid; gap: 10px; max-width: 900px; }
+    label { font-weight: 700; }
+    input { padding: 10px 12px; border: 1px solid #E5E7EB; border-radius: 12px; font-size: 14px; }
+    .btn { background:#4F46E5; color:#fff; border:0; padding:10px 14px; border-radius:12px; font-weight:700; cursor:pointer; }
+    .btn:hover { background:#4338CA; }
+    .grid { display:grid; grid-template-columns: repeat(4, 1fr); gap:10px; }
+    @media (max-width: 800px){ .grid { grid-template-columns: 1fr 1fr; } }
+  </style>
+</head>
+<body>
+  <form class="row" method="POST" action="{{ url_for('run_custom') }}" target="_top">
+    <div>
+      <label>Function (use x and y)</label>
+      <input name="expr" placeholder="Example: x^2 + y^2 or sin(x)+cos(y)" required>
+    </div>
+
+    <div class="grid">
+      <div>
+        <label>Lower bound</label>
+        <input name="lb" value="-5">
+      </div>
+      <div>
+        <label>Upper bound</label>
+        <input name="ub" value="5">
+      </div>
+      <div>
+        <label>Population (it)</label>
+        <input name="it" value="40">
+      </div>
+      <div>
+        <label>Iterations (gen)</label>
+        <input name="gen" value="60">
+      </div>
+    </div>
+
+    <button class="btn" type="submit">Submit & Generate</button>
+  </form>
+</body>
+</html>
