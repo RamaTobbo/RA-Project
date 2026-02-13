@@ -3,14 +3,12 @@ FROM python:3.10-slim
 
 # Install system dependencies + R
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    r-base \
-    r-base-dev \
-    build-essential \
+    r-base r-base-dev build-essential \
+    libcurl4-openssl-dev libssl-dev libxml2-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Optional: if your R scripts need common libraries like ggplot2/animation/etc
-# We'll install R packages later (see step 4).
-RUN R -e "install.packages(c('ggplot2','dplyr','tidyr','reshape2'), repos='https://cloud.r-project.org')"
+RUN R -e "install.packages(c('ggplot2','gganimate','gifski','transformr','tweenr'), repos='https://cloud.r-project.org')"
+
 
 WORKDIR /app
 
