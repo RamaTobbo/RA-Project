@@ -3,9 +3,19 @@ FROM python:3.10-slim
 
 # Install system dependencies + R
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    r-base r-base-dev build-essential \
+    r-base r-base-dev \
+    build-essential \
+    cmake pkg-config \
+    rustc cargo \
     libcurl4-openssl-dev libssl-dev libxml2-dev \
+    libfontconfig1-dev libharfbuzz-dev libfribidi-dev \
+    libpng-dev libjpeg-dev libtiff5-dev \
+    libudunits2-dev \
+    libgdal-dev \
+    libgeos-dev \
+    libproj-dev proj-data \
     && rm -rf /var/lib/apt/lists/*
+
 
 RUN R -e "install.packages(c('ggplot2','gganimate','gifski','transformr','tweenr'), repos='https://cloud.r-project.org')"
 
