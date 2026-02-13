@@ -29,20 +29,20 @@ def find_rscript():
     if rscript and os.path.exists(rscript):
         return rscript
 
-    # 2) Try PATH
+    # 2) Try PATH (Linux + Mac + Windows if installed properly)
     rscript = shutil.which("Rscript")
     if rscript and os.path.exists(rscript):
         return rscript
 
-    # 3) Last resort: common Windows location (edit version if needed)
+    # 3) Windows fallback (only useful locally)
     guess = r"C:\Program Files\R\R-4.5.2\bin\x64\Rscript.exe"
     if os.path.exists(guess):
         return guess
 
-    # If still not found → raise clear message
     raise FileNotFoundError(
-        "Rscript.exe not found. Set environment variable RSCRIPT_PATH to your Rscript.exe path."
+        "Rscript not found. On Render, install R (Docker) or set RSCRIPT_PATH."
     )
+
 
 
 
