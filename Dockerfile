@@ -34,4 +34,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Start server
-CMD ["bash", "-lc", "gunicorn app:app --bind 0.0.0.0:$PORT"]
+CMD ["bash", "-lc", "gunicorn app:app --bind 0.0.0.0:$PORT --timeout 180 --workers 1"]
+
