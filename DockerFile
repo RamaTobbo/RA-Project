@@ -10,6 +10,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # Optional: if your R scripts need common libraries like ggplot2/animation/etc
 # We'll install R packages later (see step 4).
+RUN R -e "install.packages(c('ggplot2','dplyr','tidyr','reshape2'), repos='https://cloud.r-project.org')"
 
 WORKDIR /app
 
