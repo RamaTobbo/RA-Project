@@ -351,6 +351,11 @@ def gif_page(algo, metric):
         gif_file=filename
     )
 
+@app.route("/pick_gif")
+def pick_gif():
+    algo = request.args.get("algo", "wolf").lower()
+    metric = request.args.get("metric", "best").lower()
+    return redirect(url_for("gif_page", algo=algo, metric=metric))
 
 
 # =========================================================

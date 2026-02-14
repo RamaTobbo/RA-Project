@@ -55,17 +55,42 @@
     </div>
   </div>
 
-  <div class="grid">
-    {% for a in ["wolf","bee","bat","fish"] %}
-    <div class="card algo">
-      <h3 style="margin:0;text-transform:capitalize">{{ a }}</h3>
-      <div style="display:flex;gap:10px;flex-wrap:wrap">
-        <a class="btn btn-primary" href="{{ url_for('gif_page', algo=a, metric='best') }}">Best GIF</a>
-        <a class="btn" href="{{ url_for('gif_page', algo=a, metric='average') }}">Generate Average </a>
-      </div>
+<div class="card">
+  <h3 style="margin:0">Generate a plot</h3>
+
+  <form method="GET" action="{{ url_for('pick_gif') }}"
+        style="margin-top:12px;display:flex;gap:20px;flex-wrap:wrap;align-items:flex-end">
+
+    <div>
+      <label><b>Algorithm</b></label><br>
+      <select name="algo" required
+              style="padding:10px;border-radius:10px;border:1px solid #E5E7EB">
+        <option value="wolf">Wolf</option>
+        <option value="bee">Bee</option>
+        <option value="bat">Bat</option>
+        <option value="fish">Fish</option>
+      </select>
     </div>
-    {% endfor %}
-  </div>
+
+    <div>
+      <label><b>Metric</b></label><br>
+      <select name="metric" required
+              style="padding:10px;border-radius:10px;border:1px solid #E5E7EB">
+        <option value="best">Best</option>
+        <option value="average">Average</option>
+      </select>
+    </div>
+
+    <button class="btn btn-primary" type="submit">
+      Generate
+    </button>
+  </form>
+
+  <p class="muted" style="margin-top:10px">
+    Only the selected plot will be generated to keep the app fast.
+  </p>
+</div>
+
 </div>
 </body>
 </html>
