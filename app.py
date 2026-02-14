@@ -46,19 +46,35 @@ def find_rscript():
 
 
 
-def run_r(script_path, run_dir):
+def run_r(script_path, run_dir, timeout=300):
+    """
+    Run an R script safely and block until it finishes.
+
+    :param script_path: full path to the R script
+    :param run_dir: working directory where the script will run
+    :param timeout: max seconds to allow R to run
+    """
     rscript = find_rscript()
     cmd = [rscript, script_path, run_dir]
-    p = subprocess.run(cmd, capture_output=True, text=True, cwd=run_dir)
 
-
-    if p.returncode != 0:
-        raise RuntimeError(
-            "R script failed.\n"
-            f"CMD: {' '.join(cmd)}\n"
-            f"STDOUT:\n{p.stdout}\n"
-            f"STDERR:\n{p.stderr}\n"
+    try:
+        result = subprocess.run(
+            cmd,
+            cwd=run_dir,
+            capture_output=True,
+            text=True,
+            timeout=timeout
         )
+    except subprocess.TimeoutExpired:
+        raise RuntimeError(f"R script timed out after {timeout} seconds: {cmd}")
+
+    if result.returncode != 0:
+        raise RuntimeError(
+            f"R script failed!\nCMD: {' '.join(cmd)}\n"
+            f"STDOUT:\n{result.stdout}\n"
+            f"STDERR:\n{result.stderr}"
+        )
+
 
 
 def ensure_run_outputs_in_run_dir(run_dir):
@@ -401,8 +417,8 @@ def run_custom():
         if not os.path.exists(vis):
             raise FileNotFoundError(f"Missing: {vis}")
 
-        run_r(pre, run_dir)
-        run_r(vis, run_dir)
+        run_r(pre, run_dir, timeout=300)
+        run_r(vis, run_dir, timeout=300)
     except Exception as e:
         session["custom_error"] = str(e)
         return redirect(url_for("custom_fit"))

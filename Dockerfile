@@ -100,4 +100,5 @@ COPY . .
 # --------------------------------------------------
 # Start App (Render uses $PORT)
 # --------------------------------------------------
-CMD ["bash", "-lc", "gunicorn app:app --bind 0.0.0.0:${PORT} --timeout 180 --workers 1"]
+CMD ["bash", "-lc", "gunicorn app:app --bind 0.0.0.0:${PORT} --timeout 600 --workers 1"]
+
