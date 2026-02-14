@@ -61,7 +61,7 @@
       <h3 style="margin:0;text-transform:capitalize">{{ a }}</h3>
       <div style="display:flex;gap:10px;flex-wrap:wrap">
         <a class="btn btn-primary" href="{{ url_for('gif_page', algo=a, metric='best') }}">Best GIF</a>
-        <a class="btn" href="{{ url_for('gif_page', algo=a, metric='average') }}">Average GIF</a>
+        <a class="btn" href="{{ url_for('gif_page', algo=a, metric='average') }}">Generate Average </a>
       </div>
     </div>
     {% endfor %}

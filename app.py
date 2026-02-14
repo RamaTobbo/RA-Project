@@ -44,16 +44,12 @@ def find_rscript():
     )
 
 
-def run_r(script_path, run_dir, timeout=600):
-    """
-    Run an R script safely and block until it finishes.
-
-    :param script_path: full path to the R script
-    :param run_dir: working directory where the script will run
-    :param timeout: max seconds to allow R to run
-    """
+def run_r(script_path, run_dir, timeout=600, extra_args=None):
     rscript = find_rscript()
+
     cmd = [rscript, script_path, run_dir]
+    if extra_args:
+        cmd.extend([str(x) for x in extra_args])
 
     try:
         result = subprocess.run(
@@ -308,10 +304,6 @@ def custom_results():
 
 @app.route("/gif/<algo>/<metric>")
 def gif_page(algo, metric):
-    """
-    algo: wolf|bee|bat|fish
-    metric: best|average
-    """
     run_id = session.get("run_id")
     if not run_id:
         return redirect(url_for("custom_fit"))
@@ -333,7 +325,23 @@ def gif_page(algo, metric):
     if (algo, metric) not in gif_map:
         return redirect(url_for("custom_results"))
 
+    run_dir = os.path.join(app.root_path, "static", "runs", run_id)
     filename = gif_map[(algo, metric)]
+    gif_path = os.path.join(run_dir, filename)
+
+    # ✅ ON-DEMAND generation for Average (and even Best if missing)
+    if not os.path.exists(gif_path):
+        try:
+            one = os.path.join(app.root_path, "Code", "SummaryVis_one.R")
+            if not os.path.exists(one):
+                raise FileNotFoundError(f"Missing: {one}")
+
+            # generates only ONE gif (algo+metric)
+            run_r(one, run_dir, timeout=600, extra_args=[algo, metric])
+        except Exception as e:
+            session["custom_error"] = str(e)
+            return redirect(url_for("custom_fit"))
+
     return render_template(
         "gif_view.html",
         run_id=run_id,
@@ -342,6 +350,7 @@ def gif_page(algo, metric):
         metric=metric,
         gif_file=filename
     )
+
 
 
 # =========================================================
