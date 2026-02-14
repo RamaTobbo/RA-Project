@@ -46,7 +46,7 @@ def find_rscript():
 
 
 
-def run_r(script_path, run_dir, timeout=300):
+def run_r(script_path, run_dir, timeout=600):
     """
     Run an R script safely and block until it finishes.
 
@@ -417,8 +417,8 @@ def run_custom():
         if not os.path.exists(vis):
             raise FileNotFoundError(f"Missing: {vis}")
 
-        run_r(pre, run_dir, timeout=300)
-        run_r(vis, run_dir, timeout=300)
+        run_r(pre, run_dir, timeout=600)
+        run_r(vis, run_dir, timeout=600)
     except Exception as e:
         session["custom_error"] = str(e)
         return redirect(url_for("custom_fit"))

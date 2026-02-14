@@ -70,14 +70,18 @@ make_anim <- function(df, ycol, title_txt, colr, y_lim) {
       panel.grid.minor = element_blank(),
       plot.margin = margin(10, 10, 10, 10)
     ) +
-    transition_reveal(Iteration)
+    transition_reveal(Iteration, keep_last = TRUE)
+
 
   animate(
-    p,
-    renderer = gifski_renderer(),
-    width = 460, height = 460, fps = 12,
-    end_pause = 10
-  )
+  p,
+  renderer = gifski_renderer(),
+  width = 350,
+  height = 350,
+  fps = 8,
+  end_pause = 5
+)
+
 }
 
 # ---- Best GIFs
