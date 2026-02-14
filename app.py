@@ -329,18 +329,23 @@ def gif_page(algo, metric):
     filename = gif_map[(algo, metric)]
     gif_path = os.path.join(run_dir, filename)
 
-    # ✅ ON-DEMAND generation for Average (and even Best if missing)
-    if not os.path.exists(gif_path):
-        try:
-            one = os.path.join(app.root_path, "Code", "SummaryVis_one.R")
-            if not os.path.exists(one):
-                raise FileNotFoundError(f"Missing: {one}")
+    try:
+        # define script paths
+        pre = os.path.join(app.root_path, "Code", "Preprocessing_run.R")
+        one = os.path.join(app.root_path, "Code", "SummaryVis_one.R")
 
-            # generates only ONE gif (algo+metric)
+        # ✅ 1) Run preprocessing ONLY if needed
+        marker = os.path.join(run_dir, "datawolf.csv")
+        if not os.path.exists(marker):
+            run_r(pre, run_dir, timeout=600)
+
+        # ✅ 2) Generate GIF ONLY if it doesn't exist
+        if not os.path.exists(gif_path):
             run_r(one, run_dir, timeout=600, extra_args=[algo, metric])
-        except Exception as e:
-            session["custom_error"] = str(e)
-            return redirect(url_for("custom_fit"))
+
+    except Exception as e:
+        session["custom_error"] = str(e)
+        return redirect(url_for("custom_fit"))
 
     return render_template(
         "gif_view.html",
@@ -350,6 +355,7 @@ def gif_page(algo, metric):
         metric=metric,
         gif_file=filename
     )
+
 
 @app.route("/pick_gif")
 def pick_gif():
@@ -429,8 +435,8 @@ def run_custom():
         if not os.path.exists(vis):
             raise FileNotFoundError(f"Missing: {vis}")
 
-        run_r(pre, run_dir, timeout=600)
-        run_r(vis, run_dir, timeout=600)
+        # run_r(pre, run_dir, timeout=600)
+        # run_r(vis, run_dir, timeout=600)
     except Exception as e:
         session["custom_error"] = str(e)
         return redirect(url_for("custom_fit"))
