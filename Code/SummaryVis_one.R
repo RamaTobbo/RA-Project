@@ -87,13 +87,19 @@ p <- ggplot(df, aes(x = Iteration, y = .data[[ycol]])) +
   ) +
   transition_reveal(Iteration, keep_last = TRUE)
 
+step <- max(1, floor(nrow(df)/150))
+df <- df[seq(1, nrow(df), by = step), ]
+
 anim <- animate(
   p,
   renderer = gifski_renderer(),
-  width = 320, height = 320,
-  fps = 6,
-  end_pause = 2
+  width = 260,
+  height = 260,
+  fps = 4,
+  end_pause = 0,
+  nframes = 60
 )
+
 
 anim_save(outfile, animation = anim)
 cat("One GIF done:", outfile, "\n")

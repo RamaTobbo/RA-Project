@@ -17,7 +17,7 @@ df <- read.csv(in_csv)
 
 p <- ggplot(df, aes(x = Iteration, y = .data[[ycol]])) +
   geom_line(size=1.6, color=colr) +
-  geom_point(aes(group = seq_along(Iteration)), size=3, color=colr) +
+  geom_point(aes(group = seq_along(Iteration)), size=1.2, color=colr) +
   theme_gray(base_size = 12) +
   labs(title = ttl, x="Iteration", y=ycol) +
   transition_reveal(Iteration)

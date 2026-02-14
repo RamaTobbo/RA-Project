@@ -21,7 +21,7 @@ p <-
 
 p
 an <- p + 
-  geom_point(aes(group = seq_along(Iteration)),size=3) +
+  geom_point(aes(group = seq_along(Iteration)),size=1.2) +
   transition_reveal(Iteration) 
 
 

@@ -72,15 +72,15 @@ make_anim <- function(df, ycol, title_txt, colr, y_lim) {
     ) +
     transition_reveal(Iteration, keep_last = TRUE)
 
-
-  animate(
+anim <- animate(
   p,
   renderer = gifski_renderer(),
-  width = 350,
-  height = 350,
-  fps = 8,
-  end_pause = 5
+  width = 260, height = 260,
+  fps = 4,
+  end_pause = 0,
+  nframes = 60
 )
+
 
 }
 
