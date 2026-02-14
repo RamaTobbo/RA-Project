@@ -91,9 +91,7 @@
       <div>
         <h2>Custom Fitness Function</h2>
         <p>Enter an equation and parameters. We run Wolf, Bee, Bat, and Fish automatically.</p>
-        {% if session.get("custom_error") %}
-          <div style="margin-top:10px" class="err">{{ session.get("custom_error") }}</div>
-        {% endif %}
+    
       </div>
       <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
         <a class="btn" href="{{ url_for('custom_results') }}">Results</a>

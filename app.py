@@ -44,8 +44,6 @@ def find_rscript():
     )
 
 
-
-
 def run_r(script_path, run_dir, timeout=600):
     """
     Run an R script safely and block until it finishes.
@@ -74,7 +72,6 @@ def run_r(script_path, run_dir, timeout=600):
             f"STDOUT:\n{result.stdout}\n"
             f"STDERR:\n{result.stderr}"
         )
-
 
 
 def ensure_run_outputs_in_run_dir(run_dir):
@@ -282,7 +279,9 @@ def ackley_fit():
 # =========================================================
 @app.route("/custom_fit")
 def custom_fit():
-    return render_template("custom_fit.html")
+    # ✅ IMPORTANT: clear old error so it doesn't show when opening the page
+    custom_error = session.pop("custom_error", None)
+    return render_template("custom_fit.html", custom_error=custom_error)
 
 
 @app.route("/custom_ui")
@@ -375,7 +374,7 @@ def run_custom():
         session["custom_error"] = "Lower bound must be strictly smaller than upper bound."
         return redirect(url_for("custom_fit"))
 
-    session["custom_error"] = ""
+    # Save inputs
     session["custom_expr"] = fun_expr
     session["custom_lb"] = lb_f
     session["custom_ub"] = ub_f
@@ -391,7 +390,6 @@ def run_custom():
 
     # 1) Run YOUR real algorithms (Wolf/Bee/Bat/Fish)
     try:
-        # Your Michalewicz_Code.check should run all 4 algos and write CSVs into Code/GeneratedData/
         status = Michalewicz_Code.check(it_i, gen_i, lb_f, ub_f, fun_expr)
         if str(status).lower() == "error":
             session["custom_error"] = "Error: function invalid or bounds incorrect."
