@@ -98,16 +98,16 @@ anim_save(file.path(run_dir, "Bee_Fun_Best.gif"),
           animation = make_anim(databee, "Best", "Bee — Best Fitness", "orange", best_lim))
 
 # ---- Average GIFs
-anim_save(file.path(run_dir, "Fish_Fun_Average.gif"),
-          animation = make_anim(datafish, "Average", "Fish — Average Fitness", "brown1", avg_lim))
+# anim_save(file.path(run_dir, "Fish_Fun_Average.gif"),
+#           animation = make_anim(datafish, "Average", "Fish — Average Fitness", "brown1", avg_lim))
 
-anim_save(file.path(run_dir, "Bat_Fun_Average.gif"),
-          animation = make_anim(databat, "Average", "Bat — Average Fitness", "purple", avg_lim))
+# anim_save(file.path(run_dir, "Bat_Fun_Average.gif"),
+#           animation = make_anim(databat, "Average", "Bat — Average Fitness", "purple", avg_lim))
 
-anim_save(file.path(run_dir, "Wolf_Fun_Average.gif"),
-          animation = make_anim(datawolf, "Average", "Wolf — Average Fitness", "royalblue", avg_lim))
+# anim_save(file.path(run_dir, "Wolf_Fun_Average.gif"),
+#           animation = make_anim(datawolf, "Average", "Wolf — Average Fitness", "royalblue", avg_lim))
 
-anim_save(file.path(run_dir, "Bee_Fun_Average.gif"),
-          animation = make_anim(databee, "Average", "Bee — Average Fitness", "orange", avg_lim))
+# anim_save(file.path(run_dir, "Bee_Fun_Average.gif"),
+#           animation = make_anim(databee, "Average", "Bee — Average Fitness", "orange", avg_lim))
 
 cat("SummaryVis done. GIFs saved in:", run_dir, "\n")
